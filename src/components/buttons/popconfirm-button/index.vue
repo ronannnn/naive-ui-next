@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RPopconfirmButtonProps } from '.'
+import type { RPopconfirmButtonProps } from '~/types'
 
 const props = defineProps<RPopconfirmButtonProps>()
 

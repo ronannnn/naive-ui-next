@@ -8,6 +8,8 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const cloneJson: typeof import('./composables/json')['cloneJson']
+  const compareObjArrays: typeof import('./composables/diff')['compareObjArrays']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -25,6 +27,7 @@ declare global {
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const customRef: typeof import('vue')['customRef']
+  const dataTypeLabels: typeof import('./composables/type')['dataTypeLabels']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -34,19 +37,36 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getObjWithModifiedFields: typeof import('./composables/diff')['getObjWithModifiedFields']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
+  const isArray: typeof import('./composables/type')['isArray']
+  const isBigInt: typeof import('./composables/type')['isBigInt']
+  const isBoolean: typeof import('./composables/type')['isBoolean']
+  const isDate: typeof import('./composables/type')['isDate']
   const isDefined: typeof import('@vueuse/core')['isDefined']
   const isEmptyString: typeof import('./composables/string')['isEmptyString']
+  const isFile: typeof import('./composables/type')['isFile']
+  const isMap: typeof import('./composables/type')['isMap']
+  const isNull: typeof import('./composables/type')['isNull']
+  const isNumber: typeof import('./composables/type')['isNumber']
+  const isObject: typeof import('./composables/type')['isObject']
+  const isPromise: typeof import('./composables/type')['isPromise']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const isRegExp: typeof import('./composables/type')['isRegExp']
+  const isSet: typeof import('./composables/type')['isSet']
+  const isString: typeof import('./composables/type')['isString']
+  const isSymbol: typeof import('./composables/type')['isSymbol']
+  const isUndefined: typeof import('./composables/type')['isUndefined']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
+  const noDupPrimitiveArray: typeof import('./composables/type')['noDupPrimitiveArray']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeUnmount: typeof import('vue')['onBeforeUnmount']
@@ -64,6 +84,7 @@ declare global {
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const onlyAllowNumberAndDot: typeof import('./composables/type')['onlyAllowNumberAndDot']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
@@ -117,6 +138,7 @@ declare global {
   const useArrayJoin: typeof import('@vueuse/core')['useArrayJoin']
   const useArrayMap: typeof import('@vueuse/core')['useArrayMap']
   const useArrayReduce: typeof import('@vueuse/core')['useArrayReduce']
+  const useArraySet: typeof import('./composables/type')['useArraySet']
   const useArraySome: typeof import('@vueuse/core')['useArraySome']
   const useArrayUnique: typeof import('@vueuse/core')['useArrayUnique']
   const useAsyncQueue: typeof import('@vueuse/core')['useAsyncQueue']
@@ -259,6 +281,7 @@ declare global {
   const useToString: typeof import('@vueuse/core')['useToString']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTransition: typeof import('@vueuse/core')['useTransition']
+  const useType: typeof import('./composables/type')['useType']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
   const useVModel: typeof import('@vueuse/core')['useVModel']
@@ -304,6 +327,8 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly cloneJson: UnwrapRef<typeof import('./composables/json')['cloneJson']>
+    readonly compareObjArrays: UnwrapRef<typeof import('./composables/diff')['compareObjArrays']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -321,6 +346,7 @@ declare module 'vue' {
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dataTypeLabels: UnwrapRef<typeof import('./composables/type')['dataTypeLabels']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -330,19 +356,36 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getObjWithModifiedFields: UnwrapRef<typeof import('./composables/diff')['getObjWithModifiedFields']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
+    readonly isArray: UnwrapRef<typeof import('./composables/type')['isArray']>
+    readonly isBigInt: UnwrapRef<typeof import('./composables/type')['isBigInt']>
+    readonly isBoolean: UnwrapRef<typeof import('./composables/type')['isBoolean']>
+    readonly isDate: UnwrapRef<typeof import('./composables/type')['isDate']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isEmptyString: UnwrapRef<typeof import('./composables/string')['isEmptyString']>
+    readonly isFile: UnwrapRef<typeof import('./composables/type')['isFile']>
+    readonly isMap: UnwrapRef<typeof import('./composables/type')['isMap']>
+    readonly isNull: UnwrapRef<typeof import('./composables/type')['isNull']>
+    readonly isNumber: UnwrapRef<typeof import('./composables/type')['isNumber']>
+    readonly isObject: UnwrapRef<typeof import('./composables/type')['isObject']>
+    readonly isPromise: UnwrapRef<typeof import('./composables/type')['isPromise']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isRegExp: UnwrapRef<typeof import('./composables/type')['isRegExp']>
+    readonly isSet: UnwrapRef<typeof import('./composables/type')['isSet']>
+    readonly isString: UnwrapRef<typeof import('./composables/type')['isString']>
+    readonly isSymbol: UnwrapRef<typeof import('./composables/type')['isSymbol']>
+    readonly isUndefined: UnwrapRef<typeof import('./composables/type')['isUndefined']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly noDupPrimitiveArray: UnwrapRef<typeof import('./composables/type')['noDupPrimitiveArray']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
@@ -360,6 +403,7 @@ declare module 'vue' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly onlyAllowNumberAndDot: UnwrapRef<typeof import('./composables/type')['onlyAllowNumberAndDot']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
@@ -413,6 +457,7 @@ declare module 'vue' {
     readonly useArrayJoin: UnwrapRef<typeof import('@vueuse/core')['useArrayJoin']>
     readonly useArrayMap: UnwrapRef<typeof import('@vueuse/core')['useArrayMap']>
     readonly useArrayReduce: UnwrapRef<typeof import('@vueuse/core')['useArrayReduce']>
+    readonly useArraySet: UnwrapRef<typeof import('./composables/type')['useArraySet']>
     readonly useArraySome: UnwrapRef<typeof import('@vueuse/core')['useArraySome']>
     readonly useArrayUnique: UnwrapRef<typeof import('@vueuse/core')['useArrayUnique']>
     readonly useAsyncQueue: UnwrapRef<typeof import('@vueuse/core')['useAsyncQueue']>
@@ -555,6 +600,7 @@ declare module 'vue' {
     readonly useToString: UnwrapRef<typeof import('@vueuse/core')['useToString']>
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
+    readonly useType: UnwrapRef<typeof import('./composables/type')['useType']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>

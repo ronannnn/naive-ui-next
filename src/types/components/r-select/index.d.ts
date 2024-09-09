@@ -1,8 +1,9 @@
 import type { SelectProps } from 'naive-ui'
+import type { VNode } from 'vue'
 
 export interface RSelectProps {
   initModel?: any
-  searchFn: (query: Template<any>) => Promise<Api.RequestResult<Api.PageResult<any>>>
+  searchFn?: (query: Query.Template<any>) => Promise<Api.RequestResult<Api.PageResult<any>>>
   searchFields: string[]
   labelField: string
   valueField?: string

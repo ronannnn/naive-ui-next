@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectInst, SelectOption, SelectProps } from 'naive-ui'
-import type { RSelectProps } from '.'
+import type { RSelectProps } from '~/types'
 
 const props = withDefaults(defineProps<RSelectProps>(), {
   valueField: 'id',
@@ -42,6 +42,10 @@ const allOptions = computed(() => allData.value
 const selected = ref(false)
 const focused = ref(false)
 async function handleSearch(searchStr: string) {
+  if (!props.searchFn) {
+    console.error('searchFn is required')
+    return
+  }
   // if blur, do not search
   if (!focused.value) {
     return
@@ -117,11 +121,9 @@ defineExpose({ focus: () => selectRef.value?.focus() })
     :options="allOptions"
     :loading="searching || loading"
     :render-label="renderLabel"
-    filterable
-    remote
-    clearable
+
     max-tag-count="responsive"
-    show-on-focus
+    clearable filterable remote show-on-focus
     :size="size"
     :multiple="multiple"
     :disabled="disabled"
