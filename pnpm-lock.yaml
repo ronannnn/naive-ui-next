@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@typescript-eslint/utils': ^8.2.0
+
 dependencies:
   '@better-scroll/core':
     specifier: ^2.5.1
@@ -3032,7 +3035,7 @@ packages:
   /@vitest/eslint-plugin@1.1.0(eslint@9.9.1)(typescript@5.5.4):
     resolution: {integrity: sha512-Ur80Y27Wbw8gFHJ3cv6vypcjXmrx6QHfw+q435h6Q2L+tf+h4Xf5pJTCL4YU/Jps9EVeggQxS85OcUZU7sdXRw==}
     peerDependencies:
-      '@typescript-eslint/utils': '>= 8.0'
+      '@typescript-eslint/utils': ^8.2.0
       eslint: '>= 8.57.0'
       typescript: '>= 5.0.0'
       vitest: '*'

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3333 --open",
     "build": "vite build",
     "preview": "vite preview",
     "lint:fix": "eslint --fix",
@@ -52,6 +52,9 @@
     "vite-plugin-vue-devtools": "^7.4.4",
     "vite-plugin-vue-layouts": "^0.11.0",
     "vue-tsc": "^2.1.6"
+  },
+  "resolutions": {
+    "@typescript-eslint/utils": "^8.2.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
