@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RTooltipButtonProps } from '~/types'
+import type { RTooltipButtonProps } from '.'
 
 const props = defineProps<RTooltipButtonProps>()
 
