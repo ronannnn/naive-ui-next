@@ -1,8 +1,9 @@
 {
   "name": "naive-ui-next",
   "type": "module",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "author": "Ronan Chen",
+  "license": "MIT",
   "scripts": {
     "dev": "vite --port 3333 --open",
     "build": "vite build",
