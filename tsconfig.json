@@ -13,8 +13,7 @@
     "types": [
       "vite/client",
       "vite-plugin-vue-layouts/client",
-      "vite-plugin-pwa/client",
-      "unplugin-vue-macros/macros-global"
+      "vite-plugin-pwa/client"
     ],
     "allowJs": true,
     "strict": true,
@@ -25,12 +24,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true
-  },
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-slots"
-    ]
   },
   "exclude": ["dist", "node_modules", "cypress"]
 }

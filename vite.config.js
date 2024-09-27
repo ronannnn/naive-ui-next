@@ -4,7 +4,6 @@ import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
@@ -19,13 +18,7 @@ export default defineConfig({
   },
 
   plugins: [
-    VueMacros({
-      plugins: {
-        vue: Vue({
-          include: [/\.vue$/, /\.md$/],
-        }),
-      },
-    }),
+    Vue(),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
