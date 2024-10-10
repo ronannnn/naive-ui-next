@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Admin: typeof import('./components/r-layout/SimpleLayout.vue')['default']
     AsyncSelect: typeof import('./components/r-table/query/where/AsyncSelect.vue')['default']
     ColumnSetting: typeof import('./components/r-table/column-setting/index.vue')['default']
     DatePicker: typeof import('./components/r-table/query/where/DatePicker.vue')['default']
@@ -17,6 +18,7 @@ declare module 'vue' {
     Input: typeof import('./components/r-table/query/where/Input.vue')['default']
     Item: typeof import('./components/r-table/column-setting/item.vue')['default']
     LabelValueRender: typeof import('./components/r-table/row-expand/LabelValueRender.vue')['default']
+    NBackTop: typeof import('naive-ui')['NBackTop']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NCollapseTransition: typeof import('naive-ui')['NCollapseTransition']
@@ -24,6 +26,7 @@ declare module 'vue' {
     NDataTable: typeof import('naive-ui')['NDataTable']
     NDatePicker: typeof import('naive-ui')['NDatePicker']
     NDivider: typeof import('naive-ui')['NDivider']
+    NDrawer: typeof import('naive-ui')['NDrawer']
     NDropdown: typeof import('naive-ui')['NDropdown']
     NEllipsis: typeof import('naive-ui')['NEllipsis']
     Newer: typeof import('./components/r-table/query/order/Newer.vue')['default']
@@ -33,6 +36,7 @@ declare module 'vue' {
     NPopover: typeof import('naive-ui')['NPopover']
     NPopselect: typeof import('naive-ui')['NPopselect']
     NSelect: typeof import('naive-ui')['NSelect']
+    NSplit: typeof import('naive-ui')['NSplit']
     NTooltip: typeof import('naive-ui')['NTooltip']
     Order: typeof import('./components/r-table/query/order/index.vue')['default']
     PopconfirmButton: typeof import('./components/buttons/popconfirm-button/index.vue')['default']
@@ -127,6 +131,8 @@ declare module 'vue' {
     RSelect: typeof import('./components/r-select/index.vue')['default']
     RTable: typeof import('./components/r-table/index.vue')['default']
     Select: typeof import('./components/r-table/query/where/Select.vue')['default']
+    Simple: typeof import('./components/r-layout/SimpleLayout.vue')['default']
+    SimpleLayout: typeof import('./components/r-layout/SimpleLayout.vue')['default']
     TooltipButton: typeof import('./components/buttons/tooltip-button/index.vue')['default']
     Where: typeof import('./components/r-table/query/where/index.vue')['default']
   }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { GlobalThemeOverrides } from 'naive-ui'
-import type { RColumn } from '~/types'
+import type { RColumn, SimpleLayoutProps } from '~/types'
 import { RTable } from './components/r-table'
 
 interface User {
@@ -34,11 +34,48 @@ function addTestData() {
   tblRef.value?.createRow({ id: 1, username: 'ronan1', email: '123@123.com' })
   tblRef.value?.createRow({ id: 2, username: 'ronan2', email: '124@123.com' })
 }
+
+const layoutProps = ref<SimpleLayoutProps>({
+  // sider
+  siderMinWidth: 180,
+  siderMaxWidth: 320,
+  siderWidth: 220,
+  siderMinCollapsedWidth: 50,
+  siderMaxCollapsedWidth: 100,
+  siderCollapsedWidth: 64,
+  siderCollapsed: false,
+  siderVisible: true,
+
+  // header
+  headerHeight: 48,
+  headerVisible: true,
+
+  // tab
+  tabVisible: true,
+  tabHeight: 42,
+
+  isMobile: false,
+  isFullContent: false,
+})
 </script>
 
 <template>
   <n-config-provider :theme-overrides="naiveThemeOverrides" h-full>
-    <div h-full flex-vertical>
+    <SimpleLayout
+      v-bind="layoutProps"
+      @update:sider-collapsed="collapsed => layoutProps.siderCollapsed = collapsed"
+      @update:sider-width="width => layoutProps.siderWidth = width"
+      @update:sider-collapsed-width="width => layoutProps.siderCollapsedWidth = width"
+    >
+      <template #sider>
+        sider
+      </template>
+      <template #header>
+        header
+      </template>
+      <template #tab>
+        tab
+      </template>
       <RTable
         ref="tblRef"
         name="test-user"
@@ -47,6 +84,6 @@ function addTestData() {
         :columns="columns"
         p-3
       />
-    </div>
+    </SimpleLayout>
   </n-config-provider>
 </template>
