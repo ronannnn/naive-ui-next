@@ -74,7 +74,18 @@ const layoutProps = ref<SimpleLayoutProps>({
         header
       </template>
       <template #tab>
-        tab
+        <RTab
+          active-tab-id="/"
+          :tab-height="42"
+          :tab-item-height="32"
+          :tab-items="[
+            { id: '/', label: '首页', icon: 'i-tabler-circle-check', closable: true },
+            { id: '/test-user', label: '测试用户', icon: 'i-tabler-circle-check', closable: true },
+            { id: '/test-user', label: '测试用户', icon: 'i-tabler-circle-check', closable: true },
+            { id: '/test-user', label: '测试用户', icon: 'i-tabler-circle-check', closable: true },
+            { id: '/test-user', label: '测试用户', icon: 'i-tabler-circle-check', closable: true },
+          ]"
+        />
       </template>
       <RTable
         ref="tblRef"

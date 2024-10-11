@@ -40,6 +40,12 @@ export interface SimpleLayoutTabConfig {
    * @default 42px
    */
   tabHeight?: number
+  /**
+   * Tab item height
+   *
+   * @default 32px
+   */
+  tabItemHeight?: number
 }
 
 /** Sider config */
