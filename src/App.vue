@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defu } from 'defu'
 import type { GlobalThemeOverrides } from 'naive-ui'
 import type { RColumn, SimpleLayoutProps } from '~/types'
 import { RTable } from './components/r-table'
@@ -11,11 +12,14 @@ interface User {
 }
 
 const naiveThemeOverrides = computed<GlobalThemeOverrides>(() => (
-  {
-    common: {
-      borderRadius: '6px',
+  defu(
+    getNaiveColor('#6366f1').value,
+    {
+      common: {
+        borderRadius: '6px',
+      },
     },
-  }
+  )
 ))
 
 const tblRef = ref<InstanceType<typeof RTable>>()
@@ -27,6 +31,7 @@ const columns = computed<RColumn<User>[]>(() => [
 
 onMounted(() => {
   addTestData()
+  registerUnocssColor('#6366f1')
 })
 
 function addTestData() {

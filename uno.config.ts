@@ -8,6 +8,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { getColorPaletteVars } from './src/composables/color'
 
 export default defineConfig({
   content: {
@@ -16,6 +17,9 @@ export default defineConfig({
     },
   },
   theme: {
+    colors: {
+      ...getColorPaletteVars(),
+    },
     breakpoints: {
       'sm': '640px',
       'md': '768px',

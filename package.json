@@ -17,6 +17,7 @@
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
     "@better-scroll/mouse-wheel": "^2.5.1",
+    "@ctrl/tinycolor": "^4.1.0",
     "@vueuse/core": "^11.0.3",
     "dayjs": "^1.11.13",
     "defu": "^6.1.4",
