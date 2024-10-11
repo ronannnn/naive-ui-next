@@ -92,19 +92,30 @@ const dragging = ref(false)
     <template #2>
       <div flex-vertical flex-1 overflow-x-hidden>
         <template v-if="showHeader">
-          <header v-show="!isFullContent" z-40 b="0 b-1 solid primary-1 dark:primary-9">
+          <header
+            v-show="!isFullContent"
+            b="0 b-1 solid primary-1 dark:primary-9"
+            :style="{
+              height: `${headerHeight}px`,
+            }"
+          >
             <slot name="header" />
           </header>
         </template>
 
         <template v-if="showTab">
-          <div z-30 b="0 b-1 solid primary-1 dark:primary-9">
+          <div
+            b="0 b-1 solid primary-1 dark:primary-9"
+            :style="{
+              height: `${tabHeight}px`,
+            }"
+          >
             <slot name="tab" />
           </div>
         </template>
 
         <!-- content -->
-        <main class="bg-primary-50/30 z-20 flex-vertical flex-1 overflow-y-hidden dark:bg-black">
+        <main class="flex-vertical flex-1 overflow-y-hidden bg-primary-50/30 dark:bg-black">
           <slot />
           <n-back-top />
         </main>
@@ -114,7 +125,7 @@ const dragging = ref(false)
     <!-- n-split resize-trigger -->
     <template #resize-trigger>
       <div class="h-full flex justify-end rounded-md">
-        <div class="bg-primary-1 dark:bg-primary-9 h-full w-[1px] rounded-md" />
+        <div class="h-full w-[1px] rounded-md bg-primary-1 dark:bg-primary-9" />
       </div>
     </template>
   </n-split>
