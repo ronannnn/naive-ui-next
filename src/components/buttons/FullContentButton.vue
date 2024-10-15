@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FullContentButtonProps } from '~/types'
+import type { FullContentButtonProps } from '.'
 
 defineProps<FullContentButtonProps>()
 const emit = defineEmits<{

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { RDropdownButtonProps } from '~/types'
 import { findDropdownButtonOptionsKeyRecursively } from './utils'
+import type { RDropdownButtonProps } from '.'
 
 const props = withDefaults(defineProps<RDropdownButtonProps>(), {
   trigger: 'click',

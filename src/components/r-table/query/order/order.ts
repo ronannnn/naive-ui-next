@@ -1,10 +1,9 @@
 import type { OrderQueryColumnOption } from '~/components/r-table'
-import type { Size } from '~/types'
 
-export type OrderQueryOption<T> = {
+export interface OrderQueryOption<T> extends OrderQueryColumnOption {
   field: keyof T
   label: string
-} & OrderQueryColumnOption
+}
 
 export interface OrderQueryProps<T> {
   defaultOrderQuery?: Query.Order<T>
@@ -13,5 +12,5 @@ export interface OrderQueryProps<T> {
   onUpdateOrderQuery: (query: Query.Order<T>) => void
   loading: boolean
   triggerQuery: () => Promise<void>
-  size?: Size
+  size?: NaiveUiTypes.Size
 }

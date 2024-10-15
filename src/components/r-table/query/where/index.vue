@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { SelectOption, SelectRenderLabel } from 'naive-ui'
 import { RIconCalendar, RIconEdit, RIconSelector } from '~/components/r-icons'
-import type { WhereQueryProps } from '~/types'
 import { RTableWhereQueryItem } from '.'
+import type { WhereQueryProps } from '..'
 
 const props = defineProps<WhereQueryProps<any>>()
 

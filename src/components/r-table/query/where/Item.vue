@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Size, WhereQueryOption } from '~/types'
 import {
   RTableWhereQueryAsyncSelect,
   RTableWhereQueryDatePicker,
@@ -7,6 +6,7 @@ import {
   RTableWhereQueryInput,
   RTableWhereQuerySelect,
 } from '.'
+import type { WhereQueryOption } from '..'
 
 const props = withDefaults(defineProps<{
   options: WhereQueryOption<any>[]
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
   triggerQuery: () => void
   onRemove?: (field: string) => void
   loading?: boolean
-  size?: Size
+  size?: NaiveUiTypes.Size
 }>(), {
   size: 'medium',
 })

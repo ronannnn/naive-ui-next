@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { OrderQueryOption, Size } from '~/types'
+import type { OrderQueryOption } from '.'
 
 const props = defineProps<{
   field: string
   orderType: Query.OrderType
   orderOptions: OrderQueryOption<any>[]
   unselectedFields: string[]
-  size?: Size
+  size?: NaiveUiTypes.Size
 }>()
 const emit = defineEmits<{
   change: [string, Query.OrderType]

@@ -2,6 +2,7 @@ import type {
   ButtonProps,
   PopoverPlacement,
 } from 'naive-ui'
+import type { VNodeChild } from 'vue'
 
 export interface RPopconfirmButtonProps {
   class?: string

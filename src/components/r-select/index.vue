@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectInst, SelectOption, SelectProps } from 'naive-ui'
-import type { RSelectProps } from '~/types'
+import type { RSelectProps } from '.'
 
 const props = withDefaults(defineProps<RSelectProps>(), {
   valueField: 'id',

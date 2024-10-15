@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RColumn } from '~/types'
+import type { RColumn } from '../table'
 import type { FixType } from './index.vue'
 
 defineProps<{

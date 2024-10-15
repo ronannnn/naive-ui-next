@@ -28,3 +28,7 @@ export { default as RButtonSubmit } from './RButtonSubmit.vue'
 export { default as RButtonXml } from './RButtonXml.vue'
 export { default as RButtonZip } from './RButtonZip.vue'
 export * from './tooltip-button'
+
+export interface FullContentButtonProps {
+  isFullContent: boolean
+}

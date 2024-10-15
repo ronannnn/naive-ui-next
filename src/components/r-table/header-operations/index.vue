@@ -9,7 +9,7 @@ import {
 } from '~/components/buttons'
 import { RTableOrderQuery } from '~/components/r-table'
 import { RTableColumnSetting } from '~/components/r-table/column-setting'
-import type { HeaderOperationsProps } from '~/types'
+import type { HeaderOperationsProps } from '../table'
 
 const props = withDefaults(defineProps<HeaderOperationsProps<any>>(), {
   displayOrder: () => ['create', 'whereQuery', 'orderQuery', 'refresh', 'exportExcel', 'columnSettings', 'batchDelete'],

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RTabItemProps } from '~/types'
+import type { RTabItemProps } from '.'
 
 defineProps<{
   active: boolean

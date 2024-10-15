@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RTableHeaderOperations, RTableWhereQuery } from '~/components/r-table'
-import type { RTableProps } from '~/types'
+import type { RTableProps } from './table'
 
 const props = defineProps<RTableProps<any>>()
 

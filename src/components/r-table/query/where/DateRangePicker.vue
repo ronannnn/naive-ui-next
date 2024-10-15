@@ -2,8 +2,8 @@
 import dayjs, { type OpUnitType } from 'dayjs'
 import type { DatePickerInst } from 'naive-ui'
 import type { Shortcuts } from 'naive-ui/es/date-picker/src/interface'
+import type { RDropdownButtonOption } from '~/components/buttons'
 import { RIconDelete } from '~/components/r-icons'
-import type { RDropdownButtonOption, Size } from '~/types'
 
 const props = withDefaults(defineProps<{
   label: string
@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<{
   ofUnit?: OpUnitType
   shortcuts?: Shortcuts
   disabled?: boolean
-  size?: Size
+  size?: NaiveUiTypes.Size
   format?: string
 }>(), {
   ofUnit: 'day',

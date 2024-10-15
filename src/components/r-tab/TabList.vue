@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BetterScroll from '~/components/BetterScroll.vue'
-import type { RTabListProps } from '~/types'
+import type { RTabListProps } from '.'
 
 const props = defineProps<RTabListProps>()
 const emit = defineEmits<{

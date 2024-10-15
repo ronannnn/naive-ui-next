@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { PopoverInst } from 'naive-ui'
-import type { OrderQueryProps } from '~/types'
 import ListQueryOrderItem from './Item.vue'
 import ListQueryOrderNewer from './Newer.vue'
+import type { OrderQueryProps } from '.'
 
 const props = defineProps<OrderQueryProps<any>>()
 

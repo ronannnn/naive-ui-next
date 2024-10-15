@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { SelectRenderLabel } from 'naive-ui'
 import { RIconSort } from '~/components/r-icons'
-import type { OrderQueryOption, Size } from '~/types'
+import type { OrderQueryOption } from '.'
 
 const props = defineProps<{
   orderOptions: OrderQueryOption<any>[]
   unselectedFields: string[]
-  size?: Size
+  size?: NaiveUiTypes.Size
 }>()
 const emit = defineEmits<{
   new: [string]

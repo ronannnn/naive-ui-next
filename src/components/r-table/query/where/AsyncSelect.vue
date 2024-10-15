@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SelectInst } from 'naive-ui'
+import type { RDropdownButtonOption } from '~/components/buttons/dropdown-button'
 import { RIconDelete } from '~/components/r-icons'
-import type { RDropdownButtonOption, Size } from '~/types'
 
 const props = withDefaults(defineProps<{
   class?: string
@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
   onRemove?: () => void
   atLeastOneSelected?: boolean
   disabled?: boolean
-  size?: Size
+  size?: NaiveUiTypes.Size
   // RSelect props
   searchFn?: (query: Query.Template<any>) => Promise<Api.RequestResult<Api.PageResult<any>>>
   searchFields: string[]

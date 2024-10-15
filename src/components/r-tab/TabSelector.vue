@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownOption } from 'naive-ui'
-import type { RTabSelectorProps } from '~/types'
+import type { RTabSelectorProps } from '.'
 
 const props = defineProps<RTabSelectorProps>()
 const emit = defineEmits<{

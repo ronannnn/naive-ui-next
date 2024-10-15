@@ -8,7 +8,7 @@ import type {
 } from 'naive-ui'
 import type { HTMLAttributes } from 'vue'
 import { RButtonDeleteConfirm, RDropdownButton, RTooltipButton } from '~/components/buttons'
-import type { HeaderOperationsProps, OrderQueryOption, RColumn, RTableProps, WhereQueryOption, WhereQueryProps } from '~/types'
+import type { HeaderOperationsProps, OrderQueryOption, RColumn, RTableProps, WhereQueryOption, WhereQueryProps } from '~/components/r-table'
 
 export function useTable<T extends { id: number }>(props: RTableProps<T>) {
   const {
@@ -74,7 +74,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
       .map(col => ({
         field: col.key as keyof T,
         label: col.title as string,
-        initOrderType: col.sortOption === true ? null : col.sortOption?.initOrderType,
+        initOrderType: col.sortOption === true ? null : col.sortOption?.initOrderType ?? null,
       }))
     // options from extraWhereQueryOptions
     extraOrderQueryOptions?.forEach((option) => {

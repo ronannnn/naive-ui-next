@@ -7,15 +7,13 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Admin: typeof import('./components/r-layout/SimpleLayout.vue')['default']
     AsyncSelect: typeof import('./components/r-table/query/where/AsyncSelect.vue')['default']
     BetterScroll: typeof import('./components/BetterScroll.vue')['default']
     ColumnSetting: typeof import('./components/r-table/column-setting/index.vue')['default']
-    copy: typeof import('./components/r-tab/TabList.vue')['default']
     DatePicker: typeof import('./components/r-table/query/where/DatePicker.vue')['default']
     DateRangePicker: typeof import('./components/r-table/query/where/DateRangePicker.vue')['default']
     DropdownButton: typeof import('./components/buttons/dropdown-button/index.vue')['default']
-    FullContentButton: typeof import('./components/FullContentButton.vue')['default']
+    FullContentButton: typeof import('./components/buttons/FullContentButton.vue')['default']
     HeaderOperations: typeof import('./components/r-table/header-operations/index.vue')['default']
     HoverContainer: typeof import('./components/HoverContainer.vue')['default']
     Input: typeof import('./components/r-table/query/where/Input.vue')['default']
@@ -135,7 +133,6 @@ declare module 'vue' {
     RTab: typeof import('./components/r-tab/index.vue')['default']
     RTable: typeof import('./components/r-table/index.vue')['default']
     Select: typeof import('./components/r-table/query/where/Select.vue')['default']
-    Simple: typeof import('./components/r-layout/SimpleLayout.vue')['default']
     SimpleLayout: typeof import('./components/r-layout/SimpleLayout.vue')['default']
     TabItem: typeof import('./components/r-tab/TabItem.vue')['default']
     TabItemContextMenu: typeof import('./components/r-tab/TabItemContextMenu.vue')['default']

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RDropdownButtonProps } from '~/types'
+import type { RDropdownButtonProps } from '~/components/buttons'
 
 const props = defineProps<RDropdownButtonProps>()
 </script>

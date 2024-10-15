@@ -1,4 +1,4 @@
-import type { RDropdownButtonOption } from '~/types'
+import type { RDropdownButtonOption } from '~/components/buttons'
 
 export function findDropdownButtonOptionsKeyRecursively(options: RDropdownButtonOption[], key: string | number): RDropdownButtonOption | undefined {
   for (const option of options) {

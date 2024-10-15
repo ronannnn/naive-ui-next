@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { RColumn } from '~/types'
 import { RTableColumnSettingItem } from '.'
+import type { RColumn } from '../table'
 
 export type FixType = 'left' | 'right' | 'unfixed'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SimpleLayoutProps } from '~/types'
+import type { SimpleLayoutProps } from '.'
 
 const props = defineProps<SimpleLayoutProps>()
 const emit = defineEmits<{

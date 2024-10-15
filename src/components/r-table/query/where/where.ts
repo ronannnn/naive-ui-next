@@ -1,10 +1,10 @@
 import type { WhereQueryColumnOption } from '~/components/r-table'
-import type { Size } from '~/types'
 
 export type WhereQueryOption<T> = {
   field: keyof T | string
   label: string
 } & Partial<WhereQueryColumnOption>
+
 export interface WhereQueryProps<T> {
   whereOptions: WhereQueryOption<T>[]
 
@@ -21,5 +21,5 @@ export interface WhereQueryProps<T> {
 
   loading: boolean
   triggerQuery: () => Promise<void>
-  size?: Size
+  size?: NaiveUiTypes.Size
 }

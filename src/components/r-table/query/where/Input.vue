@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { InputInst } from 'naive-ui'
+import type { RDropdownButtonOption } from '~/components/buttons'
 import { RIconDelete } from '~/components/r-icons'
-import type { RDropdownButtonOption, Size } from '~/types'
 
 const props = withDefaults(defineProps<{
   label: string
   opr?: Query.WhereOpr
   onRemove?: () => void
   disabled?: boolean
-  size?: Size
+  size?: NaiveUiTypes.Size
 }>(), {
   size: 'medium',
 })

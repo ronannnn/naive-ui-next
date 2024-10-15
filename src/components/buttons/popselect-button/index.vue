@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectOption } from 'naive-ui'
-import type { RPopselectButtonProps } from '~/types'
+import type { RPopselectButtonProps } from '.'
 
 const props = withDefaults(defineProps<RPopselectButtonProps>(), {
   trigger: 'click',

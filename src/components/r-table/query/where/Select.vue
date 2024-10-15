@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SelectInst, SelectOption } from 'naive-ui'
+import type { RDropdownButtonOption } from '~/components/buttons'
 import { RIconDelete } from '~/components/r-icons'
-import type { RDropdownButtonOption, Size } from '~/types'
 
 const props = withDefaults(defineProps<{
   class?: string
@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<{
   atLeastOneSelected?: boolean
   disabled?: boolean
   showFooter?: boolean
-  size?: Size
+  size?: NaiveUiTypes.Size
 }>(), {
   atLeastOneSelected: false,
   showFooter: false,

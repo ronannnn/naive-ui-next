@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RTabProps } from '~/types'
+import type { RTabProps } from '.'
 
 const props = defineProps<RTabProps>()
 </script>

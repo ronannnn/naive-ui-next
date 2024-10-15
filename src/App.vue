@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { defu } from 'defu'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import type { RColumn, SimpleLayoutProps } from '~/types'
+import type { SimpleLayoutProps } from '~/components/r-layout'
+import type { RColumn } from '~/components/r-table'
 import { RTable } from './components/r-table'
 
 interface User {
