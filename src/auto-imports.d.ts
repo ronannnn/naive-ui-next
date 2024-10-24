@@ -318,6 +318,7 @@ declare global {
   const watchTriggerable: typeof import('@vueuse/core')['watchTriggerable']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
+  const withInstall: typeof import('./composables/typescript')['withInstall']
 }
 // for type re-export
 declare global {
@@ -641,5 +642,6 @@ declare module 'vue' {
     readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
     readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
     readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+    readonly withInstall: UnwrapRef<typeof import('./composables/typescript')['withInstall']>
   }
 }

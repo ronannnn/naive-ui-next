@@ -1,2 +1,7 @@
+import { withInstall } from '~/composables'
+import PopconfirmButton from './index.vue'
+
 export * from './button'
-export { default as RPopconfirmButton } from './index.vue'
+
+export const RPopconfirmButton = withInstall(PopconfirmButton)
+export default RPopconfirmButton

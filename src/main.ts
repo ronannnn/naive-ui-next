@@ -9,7 +9,7 @@ const i18n = createI18n({
   legacy: false,
   globalInjection: true,
 
-  locale: 'zh_CN' || 'en_US',
+  locale: 'zh_CN',
   fallbackLocale: 'zh_CN',
   fallbackWarn: false,
   messages: {

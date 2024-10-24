@@ -1,2 +1,7 @@
+import { withInstall } from '~/composables'
+import DropdownButton from './index.vue'
+
 export * from './button'
-export { default as RDropdownButton } from './index.vue'
+
+export const RDropdownButton = withInstall(DropdownButton)
+export default RDropdownButton
