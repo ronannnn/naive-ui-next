@@ -1,6 +1,0 @@
-export { default as RTab } from './index.vue'
-export * from './tab'
-export { default as RTabItem } from './TabItem.vue'
-export { default as RTabItemContextMenu } from './TabItemContextMenu.vue'
-export { default as RTabList } from './TabList.vue'
-export { default as RTabSelector } from './TabSelector.vue'

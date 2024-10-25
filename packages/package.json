@@ -1,25 +1,18 @@
 {
+  "name": "naive-ui-next",
   "type": "module",
-  "private": true,
-  "author": "Ronan Chen",
+  "version": "0.0.6",
+  "description": "",
+  "author": "Ronan",
   "license": "MIT",
-  "workspaces": [
-    "packages",
-    "docs"
-  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": ["es", "lib"],
   "scripts": {
-    "build": "pnpm run -C packages build",
-    "publish": "pnpm -F=packages publish",
-    "preview": "vite preview",
-    "lint:fix": "eslint --fix",
-    "postinstall": "npx simple-git-hooks",
-    "typecheck": "vue-tsc --noEmit",
-    "up": "taze major -I",
-    "sizecheck": "npx vite-bundle-visualizer",
-    "docs:dev": "pnpm run -C docs dev",
-    "docs:build": "pnpm run -C docs build",
-    "docs:serve": "pnpm run -C docs serve"
+    "build": "vite build"
   },
+  "typings": "lib/index.d.ts",
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
     "@better-scroll/mouse-wheel": "^2.5.1",
@@ -35,7 +28,6 @@
     "vue-i18n": "^9.14.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.3.2",
     "@iconify-json/mdi": "^1.1.68",
     "@iconify-json/tabler": "^1.1.120",
     "@types/node": "^22.7.9",
@@ -52,8 +44,6 @@
     "simple-git-hooks": "^2.11.1",
     "taze": "^0.16.7",
     "unocss": "^0.62.3",
-    "unplugin-auto-import": "^0.18.2",
-    "unplugin-vue-components": "^0.27.4",
     "vite": "^5.4.1",
     "vite-plugin-dts": "^4.3.0",
     "vite-plugin-inspect": "^0.8.7",
@@ -61,14 +51,5 @@
     "vite-plugin-vue-devtools": "^7.4.4",
     "vite-plugin-vue-layouts": "^0.11.0",
     "vue-tsc": "^2.1.6"
-  },
-  "resolutions": {
-    "@typescript-eslint/utils": "^8.2.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
-  "lint-staged": {
-    "*": "eslint --fix"
   }
 }
