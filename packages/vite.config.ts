@@ -19,8 +19,9 @@ export default defineConfig({
   plugins: [
     Vue(),
     dts({
-      outDir: ['dist/es', 'dist/lib'],
-      tsconfigPath: './tsconfig.json',
+      entryRoot: './',
+      outDir: [resolve(__dirname, './dist/es'), resolve(__dirname, './dist/lib')],
+      tsconfigPath: '../tsconfig.json',
     }),
 
     // https://github.com/antfu/unocss
@@ -38,31 +39,26 @@ export default defineConfig({
       input: ['index.ts'],
       output: [
         {
-          // 打包格式
           format: 'es',
-          dir: 'dist/es',
-          // 打包后文件名
+          dir: resolve(__dirname, './dist/es'),
           entryFileNames: '[name].js',
-          // 让打包目录和我们目录对应
-          preserveModulesRoot: 'src',
-          preserveModules: true,
           exports: 'named',
+          preserveModules: true,
+          preserveModulesRoot: './',
         },
         {
-          // 打包格式
           format: 'cjs',
-          dir: 'dist/lib',
-          // 打包后文件名
+          dir: resolve(__dirname, './dist/lib'),
           entryFileNames: '[name].js',
-          // 让打包目录和我们目录对应
-          preserveModulesRoot: 'src',
-          preserveModules: true,
           exports: 'named',
+          preserveModules: true,
+          preserveModulesRoot: './',
         },
       ],
     },
     lib: {
-      entry: 'index.ts',
+      entry: './index.ts',
+      name: 'naive-ui-next',
     },
   },
 })
