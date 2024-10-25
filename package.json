@@ -1,12 +1,12 @@
 {
   "name": "naive-ui-next",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Ronan Chen",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "lib/index.d.ts",
+  "types": "es/index.d.ts",
   "files": ["es", "lib"],
   "scripts": {
     "dev": "vite --port 3333 --open",

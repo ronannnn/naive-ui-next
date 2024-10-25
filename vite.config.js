@@ -25,13 +25,8 @@ export default defineConfig({
     Layouts(),
 
     dts({
-      outputDir: 'es',
-      // 指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
-      tsConfigFilePath: './tsconfig.json',
-    }),
-    // 因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
-    dts({
-      outputDir: 'lib',
+      entryRoot: 'src',
+      outputDir: ['dist/es', 'dist/lib'],
       tsConfigFilePath: './tsconfig.json',
     }),
 
@@ -72,8 +67,9 @@ export default defineConfig({
   ],
 
   build: {
-    chunkSizeWarningLimit: 1024, // chunk 大小警告的限制（单位kb）
+    target: 'modules',
     outDir: 'es',
+    minify: true,
     rollupOptions: {
       // 忽略打包vue文件
       external: ['vue'],
@@ -82,26 +78,24 @@ export default defineConfig({
         {
           // 打包格式
           format: 'es',
+          dir: 'dist/es',
           // 打包后文件名
-          entryFileNames: '[name].mjs',
+          entryFileNames: '[name].js',
           // 让打包目录和我们目录对应
+          preserveModulesRoot: 'src',
           preserveModules: true,
           exports: 'named',
-          // 配置打包根目录
-          dir: 'es',
-          preserveModulesRoot: 'src',
         },
         {
           // 打包格式
           format: 'cjs',
+          dir: 'dist/lib',
           // 打包后文件名
           entryFileNames: '[name].js',
           // 让打包目录和我们目录对应
+          preserveModulesRoot: 'src',
           preserveModules: true,
           exports: 'named',
-          // 配置打包根目录
-          dir: 'lib',
-          preserveModulesRoot: 'src',
         },
       ],
     },
