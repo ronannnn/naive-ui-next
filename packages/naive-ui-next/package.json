@@ -1,6 +1,6 @@
 {
   "name": "naive-ui-next",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A NaiveUI-based component library for Vue 3",
   "author": "Ronan",
   "license": "MIT",

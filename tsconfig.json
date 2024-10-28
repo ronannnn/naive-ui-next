@@ -10,11 +10,13 @@
       "~/*": ["packages/components/*"]
     },
     "resolveJsonModule": true,
+    "types": ["vite/client", "vue"],
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
     "sourceMap": false,
     "esModuleInterop": true,
+    "isolatedModules": true,
     "preserveSymlinks": true,
     "skipLibCheck": true
   },
