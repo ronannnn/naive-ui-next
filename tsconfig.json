@@ -1,23 +1,19 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "target": "es2018",
-    "lib": ["ESNext"],
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "baseUrl": ".",
-    "rootDir": ".",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "rootDirs": ["./", "./packages/components"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "paths": {
-      "~/*": ["packages/*"]
+      "~/*": ["packages/components/*"]
     },
     "resolveJsonModule": true,
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
-    "outDir": "dist",
-    "removeComments": false,
     "sourceMap": false,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "preserveSymlinks": true,
     "skipLibCheck": true

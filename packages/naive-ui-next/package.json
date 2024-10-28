@@ -1,0 +1,24 @@
+{
+  "name": "naive-ui-next",
+  "version": "0.0.10",
+  "description": "A NaiveUI-based component library for Vue 3",
+  "author": "Ronan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ronannnn/naive-ui-next"
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "release-it": "^17.10.0"
+  }
+}
