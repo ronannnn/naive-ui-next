@@ -139,7 +139,7 @@ importers:
   docs:
     dependencies:
       naive-ui-next:
-        specifier: workspace:0.0.9
+        specifier: workspace:0.0.10
         version: link:../packages/naive-ui-next
     devDependencies:
       vitepress:

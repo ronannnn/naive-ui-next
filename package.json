@@ -7,8 +7,8 @@
     "docs"
   ],
   "scripts": {
-    "build:nn": "gulp -f packages/components/script/build/index.ts",
-    "publish:nn": "gulp -f packages/components/script/publish/index.ts",
+    "build:nn": "gulp -f packages/components/scripts/build/index.ts",
+    "publish:nn": "gulp -f packages/components/scripts/publish/index.ts",
     "preview": "vite preview",
     "lint:fix": "eslint --fix",
     "postinstall": "npx simple-git-hooks",

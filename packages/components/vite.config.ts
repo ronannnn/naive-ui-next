@@ -4,6 +4,7 @@ import Vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import pkg from './package.json'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -35,7 +36,7 @@ export default defineConfig({
     minify: true,
     rollupOptions: {
       // 忽略打包vue文件
-      external: ['vue'],
+      external: [...Object.keys((pkg as any).dependencies || {}), './script/**'],
       input: ['index.ts'],
       output: [
         {
@@ -44,12 +45,7 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          entryFileNames: (chunkInfo) => {
-            if (chunkInfo.name.includes('node_modules')) {
-              return `${chunkInfo.name.replace('node_modules', 'external')}.js`
-            }
-            return '[name].js'
-          },
+          entryFileNames: '[name].js',
         },
         {
           format: 'cjs',
@@ -57,12 +53,7 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          entryFileNames: (chunkInfo) => {
-            if (chunkInfo.name.includes('node_modules')) {
-              return `${chunkInfo.name.replace('node_modules', 'external')}.js`
-            }
-            return '[name].js'
-          },
+          entryFileNames: '[name].js',
         },
       ],
     },
