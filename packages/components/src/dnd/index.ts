@@ -1,8 +1,7 @@
-import type { SFCWithInstall } from '~/src/composables'
 import { withInstall } from '~/src/composables'
-import Dnd from './index.vue'
+import Dnd from './src/index.vue'
 
-export * from './types'
-
-export const RDnd: SFCWithInstall<typeof Dnd> = withInstall(Dnd)
+export const RDnd = withInstall(Dnd)
 export default RDnd
+
+export * from './src/types'

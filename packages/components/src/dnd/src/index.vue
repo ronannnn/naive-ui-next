@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { VueDraggable } from 'vue-draggable-plus'
-import { dndProps } from './types'
+import type { RDndProps } from './types'
 
 defineOptions({
   name: 'RDnd',
 })
-defineProps(dndProps)
+defineProps<RDndProps>()
 const model = defineModel<any>()
 </script>
 

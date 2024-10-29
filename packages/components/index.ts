@@ -1,14 +1,18 @@
 import type { App } from 'vue'
-import type { SFCWithInstall } from '~/src/composables'
-import * as components from './src/index'
+import { components } from './src/index'
 
 export * from './src/composables'
 export * from './src/index'
 
 export default {
   install: (app: App) => {
-    for (const c in components) {
-      app.use((components as SFCWithInstall<any>)[c])
-    }
+    components.forEach((item) => {
+      if (item.install!) {
+        app.use(item)
+      }
+      else if (item.name) {
+        app.component(item.name, item)
+      }
+    })
   },
 }

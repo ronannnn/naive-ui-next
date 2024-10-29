@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import Vue from '@vitejs/plugin-vue'
+import VueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
@@ -19,6 +20,7 @@ export default defineConfig({
 
   plugins: [
     Vue(),
+    VueJsx(),
     dts({
       entryRoot: './',
       outDir: ['../naive-ui-next/es', '../naive-ui-next/lib'],
@@ -45,8 +47,8 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          entryFileNames: '[name].mjs',
           sourcemap: true,
+          entryFileNames: '[name].mjs',
         },
         {
           format: 'cjs',
@@ -54,14 +56,15 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          entryFileNames: '[name].js',
           sourcemap: true,
+          entryFileNames: '[name].js',
         },
       ],
     },
     lib: {
       entry: './index.ts',
       name: 'naive-ui-next',
+      formats: ['es', 'cjs'],
     },
   },
 })
