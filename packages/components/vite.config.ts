@@ -46,6 +46,7 @@ export default defineConfig({
           preserveModules: true,
           preserveModulesRoot: './',
           entryFileNames: '[name].mjs',
+          sourcemap: true,
         },
         {
           format: 'cjs',
@@ -54,6 +55,7 @@ export default defineConfig({
           preserveModules: true,
           preserveModulesRoot: './',
           entryFileNames: '[name].js',
+          sourcemap: true,
         },
       ],
     },
