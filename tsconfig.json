@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "jsx": "preserve",
     "lib": ["ESNext", "DOM"],
     "baseUrl": ".",
     "rootDirs": ["./", "./packages/components"],
@@ -16,6 +17,7 @@
     "noUnusedLocals": true,
     "sourceMap": false,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "preserveSymlinks": true,
     "skipLibCheck": true
