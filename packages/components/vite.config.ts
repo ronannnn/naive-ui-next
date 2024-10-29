@@ -45,7 +45,7 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          entryFileNames: '[name].js',
+          entryFileNames: '[name].mjs',
         },
         {
           format: 'cjs',
