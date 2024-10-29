@@ -9,8 +9,8 @@ import type {
   PaginationProps,
 } from 'naive-ui'
 import type { HTMLAttributes, Ref, VNode } from 'vue'
-import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/components/buttons'
-import type { HeaderOperationsProps, OrderQueryOption, RColumn, RTableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
+import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/buttons'
+import type { HeaderOperationsProps, OrderQueryOption, RColumn, RTableProps, WhereQueryOption, WhereQueryProps } from '~/src/table'
 import { useBoolean, useFetching } from './boolean'
 import { compareObjArrays } from './diff'
 import { useArraySet } from './type'

@@ -19,7 +19,5 @@
     "isolatedModules": true,
     "preserveSymlinks": true,
     "skipLibCheck": true
-  },
-  "include": ["**/*"],
-  "exclude": ["node_modules"]
+  }
 }
