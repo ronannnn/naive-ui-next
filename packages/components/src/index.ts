@@ -1,13 +1,13 @@
-import { RDropdownButton } from './buttons'
-import { RDnd } from './dnd'
+import { RDropdownButton } from './components/buttons'
+import { RDnd } from './components/dnd'
 
-export * from './buttons'
-export * from './dnd'
-export * from './hover-container'
-export * from './layout'
-export * from './scroll'
-export * from './select'
-export * from './tab'
+export * from './components/buttons'
+export * from './components/dnd'
+export * from './components/hover-container'
+export * from './components/layout'
+export * from './components/scroll'
+export * from './components/select'
+export * from './components/tab'
 export * from './table'
 
 export default [

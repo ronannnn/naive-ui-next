@@ -6,7 +6,7 @@ import type {
   SelectOption,
 } from 'naive-ui'
 import type { VNode } from 'vue'
-import type { RDropdownButtonOption } from '~/src/buttons'
+import type { RDropdownButtonOption } from '~/src/components/buttons'
 import type { OrderQueryOption, OrderQueryProps, WhereQueryOption } from './query'
 
 export type OprType = 'create' | 'whereQuery' | 'orderQuery' | 'batchDelete' | 'refresh' | 'exportExcel' | 'columnSettings'

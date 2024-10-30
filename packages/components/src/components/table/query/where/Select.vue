@@ -2,7 +2,7 @@
 import { NButton, NInputGroup, NSelect } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import type { SelectInst, SelectOption } from 'naive-ui'
-import { type RDropdownButtonOption, RTooltipButton } from '~/src/buttons'
+import { type RDropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
 
 const props = withDefaults(defineProps<{
   class?: string
