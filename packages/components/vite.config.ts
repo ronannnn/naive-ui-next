@@ -36,6 +36,7 @@ export default defineConfig({
     target: 'modules',
     outDir: 'es',
     minify: true,
+    sourcemap: true,
     rollupOptions: {
       // 忽略打包vue文件
       external: [...Object.keys((pkg as any).dependencies || {})],
@@ -47,7 +48,6 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          sourcemap: true,
           entryFileNames: '[name].mjs',
         },
         {
@@ -56,7 +56,6 @@ export default defineConfig({
           exports: 'named',
           preserveModules: true,
           preserveModulesRoot: './',
-          sourcemap: true,
           entryFileNames: '[name].js',
         },
       ],
@@ -64,7 +63,6 @@ export default defineConfig({
     lib: {
       entry: './index.ts',
       name: 'naive-ui-next',
-      formats: ['es', 'cjs'],
     },
   },
 })

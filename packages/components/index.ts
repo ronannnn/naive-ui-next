@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { components } from './src/index'
+import components from './src/index'
 
 export * from './src/composables'
 export * from './src/index'

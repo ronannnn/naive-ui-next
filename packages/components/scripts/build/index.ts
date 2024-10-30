@@ -6,7 +6,7 @@ import run from '../utils/run'
 import { PROJECT_NAME } from '../version'
 
 export async function buildComponent() {
-  await run('pnpm run build', componentPath)
+  await run('pnpm run build --emptyOutDir', componentPath)
 }
 
 export default series(

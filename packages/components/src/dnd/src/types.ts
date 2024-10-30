@@ -1,8 +1,19 @@
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { SortableEvent } from 'vue-draggable-plus'
 
-export interface RDndProps {
-  dndClass?: string
-  handle?: string
-  group?: string
-  onAfterDrag?: (event: SortableEvent) => void
+export const dndProps = {
+  dndClass: {
+    type: String,
+  },
+  handle: {
+    type: String,
+  },
+  group: {
+    type: String,
+  },
+  onAfterDrag: {
+    type: Function as PropType<(event: SortableEvent) => void>,
+  },
 }
+
+export type RDndProps = ExtractPropTypes<typeof dndProps>

@@ -1,23 +1,12 @@
 // from element plus
-import type { App, AppContext, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 
 export type SFCWithInstall<T> = T & Plugin
 
-export type SFCInstallWithContext<T> = SFCWithInstall<T> & {
-  _context: AppContext | null
-}
-
-export function withInstall<T, E extends Record<string, any>>(main: T, extra?: E) {
-  (main as SFCWithInstall<T>).install = (app: App): void => {
-    for (const comp of [main, ...Object.values(extra ?? {})]) {
-      app.component(comp.name, comp)
-    }
+export function withInstall<T>(comp: T) {
+  (comp as SFCWithInstall<T>).install = (app: App) => {
+    const name = (comp as any).name || (comp as any).__name
+    app.component(name, comp as SFCWithInstall<T>)
   }
-
-  if (extra) {
-    for (const [key, comp] of Object.entries(extra)) {
-      ;(main as any)[key] = comp
-    }
-  }
-  return main as SFCWithInstall<T> & E
-}
+  return comp as SFCWithInstall<T>
+};

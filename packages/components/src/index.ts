@@ -1,3 +1,4 @@
+import { RDropdownButton } from './buttons'
 import { RDnd } from './dnd'
 
 export * from './buttons'
@@ -9,4 +10,7 @@ export * from './select'
 export * from './tab'
 export * from './table'
 
-export const components = [RDnd]
+export default [
+  RDnd,
+  RDropdownButton,
+]

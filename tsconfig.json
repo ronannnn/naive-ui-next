@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    // Required in Vue projects
     "jsx": "preserve",
-    "lib": ["ESNext", "DOM"],
-    "baseUrl": ".",
+    "useDefineForClassFields": true,
+    "baseUrl": "./",
     "rootDirs": ["./", "./packages/components"],
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -11,16 +12,13 @@
       "~/*": ["packages/components/*"]
     },
     "resolveJsonModule": true,
-    "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
+
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "sourceMap": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "preserveSymlinks": true,
     "skipLibCheck": true
   }
 }
