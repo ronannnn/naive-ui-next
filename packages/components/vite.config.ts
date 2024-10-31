@@ -22,7 +22,7 @@ export default defineConfig({
     Vue(),
     VueJsx(),
     dts({
-      entryRoot: './',
+      entryRoot: './src',
       outDir: ['../naive-ui-next/es', '../naive-ui-next/lib'],
       tsconfigPath: '../../tsconfig.json',
     }),
@@ -40,14 +40,14 @@ export default defineConfig({
     rollupOptions: {
       // 忽略打包vue文件
       external: [...Object.keys((pkg as any).dependencies || {})],
-      input: ['index.ts'],
+      input: ['src/index.ts'],
       output: [
         {
           format: 'es',
           dir: '../naive-ui-next/es',
           exports: 'named',
           preserveModules: true,
-          preserveModulesRoot: './',
+          preserveModulesRoot: './src',
           entryFileNames: '[name].mjs',
         },
         {
@@ -55,13 +55,13 @@ export default defineConfig({
           dir: '../naive-ui-next/lib',
           exports: 'named',
           preserveModules: true,
-          preserveModulesRoot: './',
+          preserveModulesRoot: './src',
           entryFileNames: '[name].js',
         },
       ],
     },
     lib: {
-      entry: './index.ts',
+      entry: './src/index.ts',
       name: 'naive-ui-next',
     },
   },

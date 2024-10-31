@@ -1,4 +1,4 @@
-import type { WhereQueryColumnOption } from '~/src/table'
+import type { WhereQueryColumnOption } from '~/src/components/table'
 
 export type WhereQueryOption<T> = {
   field: keyof T | string

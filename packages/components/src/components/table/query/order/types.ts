@@ -1,4 +1,4 @@
-import type { OrderQueryColumnOption } from '~/src/table'
+import type { OrderQueryColumnOption } from '~/src/components/table'
 
 export interface OrderQueryOption<T> extends OrderQueryColumnOption {
   field: keyof T

@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { PROJECT_NAME } from '../version'
 import { pkgPath } from './paths'
 
-const stayFile = ['package.json', 'README.md']
+const stayFile = ['package.json', 'README.md', 'global.d.ts']
 
 async function delPath(path: string) {
   let files: string[] = []

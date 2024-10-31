@@ -1,16 +1,32 @@
+import type { App } from 'vue'
 import { RDropdownButton } from './components/buttons'
 import { RDnd } from './components/dnd'
+import 'uno.css'
 
-export * from './components/buttons'
-export * from './components/dnd'
-export * from './components/hover-container'
-export * from './components/layout'
-export * from './components/scroll'
-export * from './components/select'
-export * from './components/tab'
-export * from './table'
+export * from './components'
+export * from './composables'
 
-export default [
+export const components = [
   RDnd,
   RDropdownButton,
 ]
+
+export default {
+  install: (app: App) => {
+    components.forEach((item) => {
+      if (item.install!) {
+        app.use(item)
+      }
+      else if (item.name) {
+        app.component(item.name, item)
+      }
+    })
+  },
+}
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    RDnd: typeof RDnd
+    RDropdownButton: typeof RDropdownButton
+  }
+}
