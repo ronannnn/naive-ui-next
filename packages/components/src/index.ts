@@ -49,6 +49,7 @@ export default {
   },
 }
 
+// for volar
 declare module 'vue' {
   export interface GlobalComponents {
     RDropdownButton: typeof components.RDropdownButton

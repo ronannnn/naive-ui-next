@@ -8,7 +8,7 @@
     "serve": "vitepress serve . --port 5001 --open"
   },
   "dependencies": {
-    "naive-ui-next-pro": "workspace:0.1.0"
+    "naive-ui-next": "workspace:*"
   },
   "devDependencies": {
     "vitepress": "1.4.1"

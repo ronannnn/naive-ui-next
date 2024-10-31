@@ -1,5 +1,5 @@
 {
-  "name": "naive-ui-next-pro",
+  "name": "naive-ui-next",
   "version": "0.1.0",
   "description": "A NaiveUI-based component library for Vue 3",
   "author": "Ronan",
@@ -13,13 +13,6 @@
   "types": "es/index.d.ts",
   "files": [
     "es",
-    "global.d.ts",
     "lib"
-  ],
-  "scripts": {
-    "release": "release-it"
-  },
-  "devDependencies": {
-    "release-it": "^17.10.0"
-  }
+  ]
 }
