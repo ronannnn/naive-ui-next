@@ -60,13 +60,14 @@ declare namespace Api {
   interface StatsItem {
     field: string
     result: any
+    rmk?: string
   }
   interface PageResult<T = any> {
     list: T[]
     total: number
     pageNum: number
     pageSize: number
-    stats?: StatsItem[]
+    stats?: StatsItem[][]
   }
 
   // --biz---

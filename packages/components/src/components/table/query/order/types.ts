@@ -10,7 +10,7 @@ export interface OrderQueryProps<T> {
   orderOptions: OrderQueryOption<T>[]
   orderQuery: Query.Order<T>
   onUpdateOrderQuery: (query: Query.Order<T>) => void
-  loading: boolean
+  loading?: boolean
   triggerQuery: () => Promise<void>
   size?: NaiveUiTypes.Size
 }

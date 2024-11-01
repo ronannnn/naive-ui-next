@@ -19,7 +19,7 @@ export interface WhereQueryProps<T> {
   whereQuery: Query.Where<T>
   onUpdateWhereQuery: (query: Query.Where<T>) => void
 
-  loading: boolean
+  loading?: boolean
   triggerQuery: () => Promise<void>
   size?: NaiveUiTypes.Size
 }

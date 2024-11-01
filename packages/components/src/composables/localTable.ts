@@ -1,28 +1,25 @@
-import { useDebounceFn, useLocalStorage } from '@vueuse/core'
+import { useLocalStorage } from '@vueuse/core'
 import { defu } from 'defu'
-import {
-  type DataTableColumn,
-  type DataTableCreateSummary,
-  type DataTableProps,
-  type DataTableRowKey,
-  NTooltip,
-  type PaginationProps,
+import { computed, h, ref } from 'vue'
+import type {
+  DataTableColumn,
+  DataTableProps,
+  DataTableRowKey,
+  PaginationProps,
 } from 'naive-ui'
-import { computed, h, onMounted, ref, watch } from 'vue'
 import type { HTMLAttributes, Ref, VNode } from 'vue'
 import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/components/buttons'
-import type { HeaderOperationsProps, OrderQueryOption, RColumn, RTableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
-import { exportExcel } from '.'
-import { useBoolean, useFetching } from './boolean'
+import type { HeaderOperationsProps, OrderQueryOption, RColumn, RLocalTableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
 import { compareObjArrays } from './diff'
-import { isEmptyString } from './string'
+import { exportExcel } from './excel'
 import { isString, useArraySet } from './type'
 
-export function useTable<T extends { id: number }>(props: RTableProps<T>) {
+export function useLocalTable<T>(props: RLocalTableProps<T>) {
   const {
+    data,
+    onUpdateData,
     name,
-    rowKey = (row: T) => row.id,
-    disableFetchOnMounted,
+    rowKey,
     extraButtons,
     disableCreate,
     disablePagination,
@@ -42,14 +39,9 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     rowExpand,
     rowActions,
     disableRowDelete,
-    onBatchDelete,
     onCreate,
-    onFetch,
     excel,
   } = props
-  // data
-  const data = ref<T[]>([]) as Ref<T[]>
-  const stats = ref<Api.StatsItem[][]>([]) as Ref<Api.StatsItem[][]>
 
   // local storage
   const whereQueryOptions = computed<WhereQueryOption<T>[]>(() => {
@@ -69,7 +61,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
   })
   const initWhereQueryOptionKeys = computed(() => whereQueryOptions.value.filter(option => !option.initHide).map(option => option.field as string))
   const whereQueryInitValues = computed<Query.Where<T>>(() => {
-    const initValues = whereQueryOptions.value
+    const initValues: Query.Where<T> = whereQueryOptions.value
       .filter(option => option.initValues)
       .map(option => ({ field: option.field, opr: option.opr ?? null, value: option.initValues ?? null }))
     extraWhereQueryInitValues?.forEach((initValue) => {
@@ -123,12 +115,10 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     showSizePicker: true,
     onUpdatePage: async (page: number) => {
       pagination.value.page = page
-      await fetchData()
     },
     onUpdatePageSize: async (newPageSize: number) => {
       pagination.value.pageSize = newPageSize
       pageSize.value = newPageSize
-      await fetchData()
     },
     prefix: pageInfo => h('div', { class: 'flex-y-center truncate', style: { color: '#9ca3af' } }, [
       h('span', '共'),
@@ -194,7 +184,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
 
   // row actions
   const { array: checkedRowKeys, set: checkedRowKeysSet } = useArraySet<DataTableRowKey>()
-  const { array: disabledRowKeys, set: disabledRowKeysSet } = useArraySet<DataTableRowKey>()
+  const { array: disabledRowKeys, set: _disabledRowKeysSet } = useArraySet<DataTableRowKey>()
   const { array: expandedRowKeys, set: expandedRowKeysSet } = useArraySet<DataTableRowKey>()
   function rowProps(row: T): HTMLAttributes {
     return {
@@ -215,21 +205,21 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     pagination.value.itemCount = pagination.value.itemCount ?? 0 + 1
   }
   function updateRow(newValue: T) {
-    const index = data.value.findIndex((item: T) => item.id === newValue.id)
+    const index = data.value.findIndex((item: T) => rowKey(item) === rowKey(newValue))
     if (index !== -1)
       data.value.splice(index, 1, newValue)
   }
   function deleteRow(row: T) {
-    const index = data.value.findIndex((item: T) => item.id === row.id)
+    const index = data.value.findIndex((item: T) => rowKey(item) === rowKey(row))
     if (index !== -1)
       data.value.splice(index, 1)
   }
   function createOrInsertNewRowAfterExistedRow(existedRow: T, newRow: T) {
-    const existedIdx = data.value.findIndex((item: T) => item.id === existedRow.id)
+    const existedIdx = data.value.findIndex((item: T) => rowKey(item) === rowKey(existedRow))
     if (existedIdx === -1)
       return
 
-    const newIdx = data.value.findIndex((item: T) => item.id === newRow.id)
+    const newIdx = data.value.findIndex((item: T) => rowKey(item) === rowKey(newRow))
     if (newIdx > -1) {
       // newRow already exists, remove it first
       data.value.splice(newIdx, 1)
@@ -321,7 +311,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
                   circle: true,
                   onSyncClick: action.syncFn ? () => action.syncFn?.(rowData) : undefined,
                   onAsyncClick: action.asyncFn ? async () => await action.asyncFn?.(rowData) : undefined,
-                }, { icon: () => h(action.icon(rowData)) }),
+                }, { icon: () => h(action.icon) }),
               )
             }
             else if (action.type === 'dropdown') {
@@ -360,11 +350,8 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
                 size: 'small',
                 tertiary: true,
                 iconClass: 'i-tabler-trash',
-                onAsyncConfirm: async () => {
-                  const result = await onBatchDelete?.({ ids: [rowData.id] })
-                  if (result && !result.error) {
-                    deleteRow(rowData)
-                  }
+                onConfirm: async () => {
+                  batchDelete([rowKey(rowData)])
                 },
               }),
             )
@@ -380,110 +367,17 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
   const scrollX = computed(() => {
     return sortedColumnsWithSelectionExpansionActionsRender.value.reduce((acc, col) => acc + (Number(col.width ?? 150)), 0)
   })
-  // summary
-  const colKeys = ref(columns.map(col => col.key))
-  const createSummary = computed<DataTableCreateSummary | undefined>(() => {
-    const summaryFn: DataTableCreateSummary = (_data) => {
-      const summaryRows: Record<string, any> = []
-      stats.value.forEach((stat) => {
-        const summary: Record<string, any> = {}
-        stat.forEach((item) => {
-          if (colKeys.value.includes(item.field)) {
-            summary[item.field] = {
-              value: h('div', { class: 'flex-y-center gap-1' }, [
-                !isEmptyString(item.rmk) && h(NTooltip, { disabled: isEmptyString(item.rmk) }, {
-                  default: () => item.rmk,
-                  trigger: () => h('span', { class: 'i-tabler-question-circle' }),
-                }),
-                h('span', item.result),
-              ]),
-            }
-          }
-        })
-        summaryRows.push(summary)
-      })
-      return summaryRows
-    }
-    return summaryFn
-  })
-  // fetch
-  const { fetching, startFetching, endFetching } = useFetching()
-  async function fetchData(startFromFirstPage = false) {
-    if (fetching.value) {
-      return
-    }
-
-    try {
-      if (!onFetch) {
-        console.error('onFetch is not defined')
-        return
-      }
-      startFetching()
-      let pageNum = 1
-      if (!startFromFirstPage) {
-        pageNum = pagination.value.page ?? 1
-      }
-      const { data: fetchedData } = await onFetch({
-        pagination: { pageNum, pageSize: pagination.value.pageSize ?? 10 },
-        whereQuery: whereQuery.value.filter(item => item.value !== null),
-        orderQuery: orderQuery.value,
-      })
-      if (fetchedData) {
-        data.value = fetchedData.list || []
-        pagination.value.itemCount = fetchedData.total
-        pagination.value.page = fetchedData.pageNum
-        pagination.value.pageSize = fetchedData.pageSize
-        stats.value = fetchedData.stats || []
-        // reset row keys
-        disabledRowKeysSet.value.clear()
-        checkedRowKeysSet.value.clear()
-      }
-    }
-    finally {
-      endFetching()
-    }
-  }
-  const debouncedFetchData = useDebounceFn(fetchData, 1024)
   // delete
-  const { bool: batchDeleteLoading, setTrue: startBatchDeleteLoading, setFalse: endBatchDeleteLoading } = useBoolean()
-  async function batchDelete(ids: DataTableRowKey[]) {
-    if (!onBatchDelete)
-      return
-    startBatchDeleteLoading()
-    ids.forEach(id => disabledRowKeysSet.value.add(id))
-    await onBatchDelete({ ids: ids as number[] })
-    endBatchDeleteLoading()
-    // refetch table data
-    await fetchData()
+  async function batchDelete(keys: DataTableRowKey[]) {
+    onUpdateData(data.value.filter(row => !keys.includes(rowKey(row))))
   }
   // excel
   async function handleExportExcel() {
-    if (!onFetch) {
-      console.error('onFetch is not defined')
+    if (!excel) {
       return
     }
-    const { data } = await onFetch({
-      pagination: { pageNum: 1, pageSize: 9999 },
-      whereQuery: whereQuery.value.filter(item => item.value !== null),
-      orderQuery: orderQuery.value,
-    })
-    if (data) {
-      await exportExcel<T>(data.list, columns, excel?.exportedFilename ?? `${name}.xlsx`)
-    }
+    await exportExcel<T>(data.value, columns, excel?.exportedFilename ?? `${name}.xlsx`)
   }
-
-  // watch
-  onMounted(async () => {
-    if (!disableFetchOnMounted && onFetch) {
-      await fetchData()
-    }
-  })
-  watch(
-    () => props.refreshFlag,
-    async () => {
-      await fetchData()
-    },
-  )
 
   // 组合props，便于传入组件
   const tblProps = computed<DataTableProps>(() => ({
@@ -491,13 +385,11 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     onUpdateCheckedRowKeys: keys => checkedRowKeysSet.value = new Set(keys),
     expandedRowKeys: expandedRowKeys.value,
     onUpdateExpandedRowKeys: keys => expandedRowKeysSet.value = new Set(keys),
-    data: data.value,
-    loading: fetching.value,
+    data: data.value as Record<string, any>[],
     rowKey,
     rowProps,
     scrollX: scrollX.value,
     columns: sortedColumnsWithSelectionExpansionActionsRender.value,
-    summary: createSummary.value,
     stickyExpandedRows: true,
     flexHeight: true,
     remote: true,
@@ -509,7 +401,6 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
   const tblHeaderOprProps = computed<HeaderOperationsProps<T>>(() => ({
     name,
     disableBatchDelete,
-    loading: fetching.value,
     extraButtons,
     disableCreate,
     checkedRowKeys: checkedRowKeys.value,
@@ -528,12 +419,14 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     orderOptions: orderQueryOptions.value,
     orderQuery: orderQuery.value,
     onUpdateOrderQuery: query => orderQuery.value = query,
-    triggerQuery: async () => await fetchData(), // 直接传fetchData的话，回导致把button的event传入，导致函数内部逻辑错误
+    triggerQuery: async () => {},
     size: 'small',
 
     onCreate,
-    onBatchDelete: batchDelete,
-    onFetchData: async () => await fetchData(),
+    onBatchDelete: async (keys) => {
+      batchDelete(keys)
+      checkedRowKeys.value = []
+    },
     onExportExcel: handleExportExcel,
   }))
 
@@ -551,9 +444,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     whereQuery: whereQuery.value,
     onUpdateWhereQuery: query => whereQuery.value = query,
 
-    loading: fetching.value,
     triggerQuery: async () => {
-      await fetchData(true)
       whereQueryOpen.value = false
     },
     size: 'small',
@@ -563,9 +454,6 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     // tbl
     scrollX,
     rowKey,
-    // data
-    data,
-    stats,
     // pagination
     pagination,
     // query
@@ -586,14 +474,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
     // columns
     bizColumns: columnsWithCommonProps,
     columns: sortedColumnsWithSelectionExpansionActionsRender,
-    // summary
-    createSummary,
-    // fetch
-    fetching,
-    fetchData,
-    debouncedFetchData,
     // delete
-    batchDeleteLoading,
     batchDelete,
     // excel
     handleExportExcel,

@@ -5,7 +5,7 @@ import type {
   DataTableRowKey,
   SelectOption,
 } from 'naive-ui'
-import type { VNode } from 'vue'
+import type { Ref, VNode } from 'vue'
 import type { RDropdownButtonOption } from '~/src/components/buttons'
 import type { OrderQueryOption, OrderQueryProps, WhereQueryOption } from './query'
 
@@ -13,7 +13,7 @@ export type OprType = 'create' | 'whereQuery' | 'orderQuery' | 'batchDelete' | '
 // table header props
 export interface HeaderOperationsProps<T> extends OrderQueryProps<T> {
   name: string
-  loading: boolean
+  loading?: boolean
   checkedRowKeys?: DataTableRowKey[]
   initStorageColumns?: Storage.Column[]
   columns?: RColumn<T>[]
@@ -58,8 +58,8 @@ export interface RowActionCommonProps<T> {
   hide?: (data: T) => boolean
   permissions?: string | string[]
   key: string
-  label: string
-  icon: () => VNode
+  label: string | ((data: T) => string)
+  icon: (data: T) => VNode
 }
 export interface RowTooltipActionProps<T> extends RowActionCommonProps<T> {
   type: 'tooltip'
@@ -122,30 +122,20 @@ export interface RTableProps<T> {
   // 1. table-level props
   // meta
   name: string
-  title?: string
   rowKey?: DataTableCreateRowKey<T>
-  refreshFlag?: boolean
-  // header operations
   extraButtons?: HeaderOperationsProps<T>['extraButtons']
   disableCreate?: boolean
-  createBtxTxt?: string
-  disableRefresh?: boolean
-  refreshBtnTxt?: string
-  disableBatchDelete?: boolean
-  disableColumnSetting?: boolean
-  disableWhereQuery?: boolean
-  disableOrderQuery?: boolean
+  refreshFlag?: boolean
+  disableFetchOnMounted?: boolean
   // pagination
   disablePagination?: boolean
+  disableBatchDelete?: boolean
   // where query
   showAllWhereOptionsWhenInit?: boolean
   extraWhereQueryOptions?: WhereQueryOption<T>[]
   extraWhereQueryInitValues?: Query.Where<T>
   // order query
   extraOrderQueryOptions?: OrderQueryOption<T>[] // order query不需要initValues，因为OrderOption中自带了initOrderType
-  // summary
-  disableSummary?: boolean
-
   // 2. row-level props
   // selection
   disableRowSelection?: boolean
@@ -166,4 +156,16 @@ export interface RTableProps<T> {
   onFetch?: (query: Query.Template<T>) => Promise<Api.RequestResult<Api.PageResult<T>>>
   // deletion
   onBatchDelete?: (cmd: Api.BatchDeleteCommand) => Promise<Api.RequestResult>
+
+  // excel
+  excel?: {
+    onExportExcel: () => void
+    exportedFilename?: string
+  }
+}
+
+export type RLocalTableProps<T> = RTableProps<T> & {
+  data: Ref<T[]>
+  onUpdateData: (data: T[]) => void
+  rowKey: DataTableCreateRowKey<T>
 }
