@@ -20,5 +20,14 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true
+  },
+  "include": [
+    "packages/components/**/*",
+    "docs/**/*.ts",
+    "docs/**/*.vue",
+    "docs/**/*.md"
+  ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"]
   }
 }
