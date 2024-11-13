@@ -3,6 +3,7 @@
     "target": "ESNext",
     // Required in Vue projects
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "useDefineForClassFields": true,
     "baseUrl": "./",
     "rootDirs": ["./", "./packages/components"],
@@ -12,10 +13,12 @@
       "~/*": ["packages/components/*"]
     },
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "noUnusedLocals": true,
 
     "declaration": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,

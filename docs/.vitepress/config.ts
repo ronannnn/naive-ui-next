@@ -1,7 +1,13 @@
+import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    plugins: [
+      Unocss(),
+    ],
+  },
   srcDir: 'src',
   title: 'Naive UI Next',
   description: 'Naive UI based Vue3 component library',

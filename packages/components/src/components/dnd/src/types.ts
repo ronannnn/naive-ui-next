@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPublicPropTypes, PropType } from 'vue'
 import type { SortableEvent } from 'vue-draggable-plus'
 
 export const dndProps = {
@@ -16,4 +16,4 @@ export const dndProps = {
   },
 }
 
-export type RDndProps = ExtractPropTypes<typeof dndProps>
+export type RDndProps = ExtractPublicPropTypes<typeof dndProps>

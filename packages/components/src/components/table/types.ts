@@ -122,6 +122,7 @@ export interface RTableProps<T> {
   // 1. table-level props
   // meta
   name: string
+  title?: string
   rowKey?: DataTableCreateRowKey<T>
   extraButtons?: HeaderOperationsProps<T>['extraButtons']
   disableCreate?: boolean
