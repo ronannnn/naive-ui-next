@@ -19,10 +19,11 @@ import { compareObjArrays } from './diff'
 import { isEmptyString } from './string'
 import { isString, useArraySet } from './type'
 
-export function useTable<T extends { id: number }>(props: TableProps<T>) {
+export function useTable<T>(props: TableProps<T>) {
   const {
     name,
-    rowKey = (row: T) => row.id,
+    primaryKey = 'id',
+    rowKey = (row: T) => row[primaryKey as keyof T] as DataTableRowKey,
     disableFetchOnMounted,
     extraButtons,
     disableCreate,
@@ -216,21 +217,21 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
     pagination.value.itemCount = pagination.value.itemCount ?? 0 + 1
   }
   function updateRow(newValue: T) {
-    const index = data.value.findIndex((item: T) => item.id === newValue.id)
+    const index = data.value.findIndex((item: T) => item[primaryKey as keyof T] === newValue[primaryKey as keyof T])
     if (index !== -1)
       data.value.splice(index, 1, newValue)
   }
   function deleteRow(row: T) {
-    const index = data.value.findIndex((item: T) => item.id === row.id)
+    const index = data.value.findIndex((item: T) => item[primaryKey as keyof T] === row[primaryKey as keyof T])
     if (index !== -1)
       data.value.splice(index, 1)
   }
   function createOrInsertNewRowAfterExistedRow(existedRow: T, newRow: T) {
-    const existedIdx = data.value.findIndex((item: T) => item.id === existedRow.id)
+    const existedIdx = data.value.findIndex((item: T) => item[primaryKey as keyof T] === existedRow[primaryKey as keyof T])
     if (existedIdx === -1)
       return
 
-    const newIdx = data.value.findIndex((item: T) => item.id === newRow.id)
+    const newIdx = data.value.findIndex((item: T) => item[primaryKey as keyof T] === newRow[primaryKey as keyof T])
     if (newIdx > -1) {
       // newRow already exists, remove it first
       data.value.splice(newIdx, 1)
@@ -362,7 +363,7 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
                 tertiary: true,
                 iconClass: 'i-tabler-trash',
                 onAsyncConfirm: async () => {
-                  const result = await onBatchDelete?.({ ids: [rowData.id] })
+                  const result = await onBatchDelete?.({ ids: [rowData[primaryKey as keyof T] as number] })
                   if (result && !result.error) {
                     deleteRow(rowData)
                   }
@@ -492,7 +493,7 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
     onUpdateCheckedRowKeys: keys => checkedRowKeysSet.value = new Set(keys),
     expandedRowKeys: expandedRowKeys.value,
     onUpdateExpandedRowKeys: keys => expandedRowKeysSet.value = new Set(keys),
-    data: data.value,
+    data: data.value as any,
     loading: fetching.value,
     rowKey,
     rowProps,
