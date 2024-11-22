@@ -1,7 +1,7 @@
 import { withInstall } from '~/src/composables'
-import TooltipButton from './src/index.tsx'
+import TooltipButton from './index.vue'
 
-export * from './src/types'
+export * from './types'
 
 export const RTooltipButton = withInstall(TooltipButton)
 export default RTooltipButton

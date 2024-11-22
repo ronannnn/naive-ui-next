@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { RDropdownButtonProps } from './types'
 import { NButton, NDropdown } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { findDropdownButtonOptionsKeyRecursively } from './utils'
-import type { RDropdownButtonProps } from './types'
 
 const props = withDefaults(defineProps<RDropdownButtonProps>(), {
   trigger: 'click',
@@ -46,7 +46,7 @@ async function onSelect(key: string | number) {
     <NButton v-bind="props" :loading="btnLoading" :disabled="disabled" @click="e => e.stopPropagation()">
       <template #icon>
         <slot name="icon">
-          <div :class="iconClass" />
+          <div v-if="iconClass" :class="iconClass" />
         </slot>
       </template>
       <template #default>

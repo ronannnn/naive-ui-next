@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import type { RTooltipButtonProps } from './types'
 import { NButton, NTooltip } from 'naive-ui'
 import { computed, ref } from 'vue'
-import type { RTooltipButtonProps } from './types'
 
-defineOptions({
-  name: 'RTooltipButton',
-})
 const props = defineProps<RTooltipButtonProps>()
 
 const fnLoading = ref(false)

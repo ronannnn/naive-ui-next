@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import type { SelectOption } from 'naive-ui'
+import type { RPopselectButtonProps } from './types'
 import { NButton, NInput, NPopselect } from 'naive-ui'
 import { computed, ref } from 'vue'
-import type { SelectOption } from 'naive-ui'
 import { isEmptyString } from '~/src/composables'
-import type { RPopselectButtonProps } from './types'
 
 const props = withDefaults(defineProps<RPopselectButtonProps>(), {
   trigger: 'click',
@@ -33,7 +33,7 @@ const filteredOptions = computed<SelectOption[]>(() => props.popselectOptions.fi
     <NButton v-bind="props" :loading="btnLoading" :disabled="disabled">
       <template #icon>
         <slot name="icon">
-          <div :class="iconClass" />
+          <div v-if="iconClass" :class="iconClass" />
         </slot>
       </template>
       <template #default>

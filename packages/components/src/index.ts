@@ -9,6 +9,7 @@ export const componentArr = [
   components.RDropdownButton,
   components.RPopselectButton,
   components.RPopconfirmButton,
+  components.RTooltipButton,
   components.RDnd,
   components.RHoverContainer,
   components.RSimpleLayout,
@@ -55,6 +56,7 @@ declare module 'vue' {
     RDropdownButton: typeof components.RDropdownButton
     RPopselectButton: typeof components.RPopselectButton
     RPopconfirmButton: typeof components.RPopconfirmButton
+    RTooltipButton: typeof components.RTooltipButton
     RDnd: typeof components.RDnd
     RHoverContainer: typeof components.RHoverContainer
     RSimpleLayout: typeof components.RSimpleLayout

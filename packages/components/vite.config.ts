@@ -38,8 +38,7 @@ export default defineConfig({
     minify: true,
     sourcemap: true,
     rollupOptions: {
-      // 忽略打包vue文件
-      external: [...Object.keys((pkg as any).dependencies || {})],
+      external: [...Object.keys((pkg as any).dependencies || {}), 'vue'],
       input: ['src/index.ts'],
       output: [
         {

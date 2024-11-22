@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { RPopconfirmButtonProps } from './types'
 import { NButton, NPopconfirm } from 'naive-ui'
 import { computed, ref } from 'vue'
-import type { RPopconfirmButtonProps } from './types'
 
 const props = defineProps<RPopconfirmButtonProps>()
 
@@ -59,7 +59,7 @@ async function handlePositiveClick(e: MouseEvent) {
       >
         <template #icon>
           <slot name="icon">
-            <div :class="iconClass" />
+            <div v-if="iconClass" :class="iconClass" />
           </slot>
         </template>
         <template #default>
