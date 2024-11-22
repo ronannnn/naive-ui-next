@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import type { SelectInst, SelectOption } from 'naive-ui'
 import { NButton, NInputGroup, NSelect } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
-import type { SelectInst, SelectOption } from 'naive-ui'
-import { type RDropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
+import { type DropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
 
 const props = withDefaults(defineProps<{
   class?: string
@@ -58,7 +58,7 @@ function selectReverse() {
   queryValue.value = Array.from(reverseSet)
 }
 
-const dropdownOptions = computed<RDropdownButtonOption[]>(() => [
+const dropdownOptions = computed<DropdownButtonOption[]>(() => [
   {
     label: () => h('span', { style: { color: 'red' } }, '删除该查询条件'),
     key: 'delete',

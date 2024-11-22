@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import type { LabelValueRenderProps } from './types'
+import { NEllipsis } from 'naive-ui'
 import { isVNode } from 'vue'
-import type { RLabelValueRenderProps } from './types'
 
-defineProps<RLabelValueRenderProps>()
+defineProps<LabelValueRenderProps>()
 </script>
 
 <template>
   <div class="flex-col">
-    <n-ellipsis class="text-gray-4">
+    <NEllipsis class="text-gray-4">
       {{ label }}
-    </n-ellipsis>
+    </NEllipsis>
     <component :is="value" v-if="isVNode(value)" class="font-medium leading-4" />
     <div v-else class="font-medium leading-4">
       {{ value }}

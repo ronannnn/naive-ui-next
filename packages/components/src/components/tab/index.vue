@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { TabProps } from './types'
 import { RTabList } from '.'
-import type { RTabProps } from './types'
 
-const props = defineProps<RTabProps>()
+const props = defineProps<TabProps>()
 </script>
 
 <template>

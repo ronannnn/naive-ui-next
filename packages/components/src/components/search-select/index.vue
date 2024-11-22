@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import type { SelectInst, SelectOption, SelectProps } from 'naive-ui'
+import type { SearchSelectProps } from './types'
 import { useDebounceFn } from '@vueuse/core'
 import { NSelect } from 'naive-ui'
 import { computed, ref } from 'vue'
-import type { SelectInst, SelectOption, SelectProps } from 'naive-ui'
 import { isEmptyString, useSearching } from '~/src/composables'
-import type { RSelectProps } from './types'
 
-const props = withDefaults(defineProps<RSelectProps>(), {
+const props = withDefaults(defineProps<SearchSelectProps>(), {
   valueField: 'id',
   orderQuery: () => [{ field: 'createdAt', order: 'desc' }],
   size: 'small',
@@ -127,7 +127,10 @@ defineExpose({ focus: () => selectRef.value?.focus() })
     :render-label="renderLabel"
 
     max-tag-count="responsive"
-    clearable filterable remote show-on-focus
+    clearable
+    filterable
+    remote
+    show-on-focus
     :size="size"
     :multiple="multiple"
     :disabled="disabled"

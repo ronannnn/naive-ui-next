@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { InputInst } from 'naive-ui'
 import { NInput, NInputGroup } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
-import type { InputInst } from 'naive-ui'
-import { type RDropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
+import { type DropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
 
 const props = withDefaults(defineProps<{
   label: string
@@ -67,7 +67,7 @@ function focus() {
 }
 defineExpose({ focus })
 
-const dropdownOptions = computed<RDropdownButtonOption[]>(() => [
+const dropdownOptions = computed<DropdownButtonOption[]>(() => [
   {
     label: () => h('span', { style: { color: 'red' } }, '删除该查询条件'),
     key: 'delete',

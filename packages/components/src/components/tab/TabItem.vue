@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { TabItemProps } from './types'
 import { NButton } from 'naive-ui'
-import type { RTabItemProps } from './types'
 
 defineProps<{
   active: boolean
-  tab: RTabItemProps
+  tab: TabItemProps
 }>()
 const emit = defineEmits<{
   close: []

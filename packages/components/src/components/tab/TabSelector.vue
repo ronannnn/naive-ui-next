@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { DropdownOption } from 'naive-ui'
+import type { TabSelectorProps } from './types'
 import { NDropdown } from 'naive-ui'
 import { computed, h } from 'vue'
-import type { DropdownOption } from 'naive-ui'
 import { RHoverContainer } from '~/src'
-import type { RTabSelectorProps } from './types'
 
-const props = defineProps<RTabSelectorProps>()
+const props = defineProps<TabSelectorProps>()
 const emit = defineEmits<{
   switchTab: [string]
 }>()

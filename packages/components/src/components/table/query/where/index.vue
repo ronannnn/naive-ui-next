@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import type { SelectOption, SelectRenderLabel } from 'naive-ui'
+import type { WhereQueryProps } from './types'
 import { useArrayDifference } from '@vueuse/core'
 import { NButton, NCard, NDivider } from 'naive-ui'
 import { computed, h, nextTick, ref } from 'vue'
-import type { SelectOption, SelectRenderLabel } from 'naive-ui'
 import { RDnd, RPopselectButton } from '~/src'
 import { cloneJson } from '~/src/composables'
 import { RTableWhereQueryItem } from '.'
-import type { WhereQueryProps } from './types'
 
 const props = defineProps<WhereQueryProps<any>>()
 
@@ -113,7 +113,7 @@ const dragWhereQueryOptionKeys = computed<string[]>({
       </div>
       <div flex-center flex-1 gap-3>
         <RPopselectButton
-          :popselect-options="unselectedWhereOptions"
+          :options="unselectedWhereOptions"
           :render-label="renderLabel"
           dashed
           size="small"

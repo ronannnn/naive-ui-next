@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { TabListProps } from './types'
 import { useElementBounding } from '@vueuse/core'
 import { nextTick, reactive, ref, watch } from 'vue'
 import { RScroll } from '~/src'
 import { RTabItem, RTabItemContextMenu } from '.'
-import type { RTabListProps } from './types'
 
-const props = defineProps<RTabListProps>()
+const props = defineProps<TabListProps>()
 const emit = defineEmits<{
   closeTab: [string]
   switchTab: [string]

@@ -1,17 +1,17 @@
 <script setup lang="ts">
+import type { ColumnSetting } from '.'
+import type { Column } from '../types'
 import { useLocalStorage } from '@vueuse/core'
 import { NButton, NPopover } from 'naive-ui'
 import { onMounted, ref, watch } from 'vue'
 import { RDnd, RTooltipButton } from '~/src'
 import { RTableColumnSettingItem } from '.'
-import type { RColumnSetting } from '.'
-import type { RColumn } from '../types'
 
 export type FixType = 'left' | 'right' | 'unfixed'
 
-const props = defineProps<RColumnSetting>()
+const props = defineProps<ColumnSetting>()
 const emit = defineEmits<{
-  updateColumns: [RColumn<any>[]]
+  updateColumns: [Column<any>[]]
 }>()
 
 // 在修改列是否显示的时候，props.columns会消失，导致找不到列名，因此在这里复制一份

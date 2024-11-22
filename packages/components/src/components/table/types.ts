@@ -6,8 +6,8 @@ import type {
   SelectOption,
 } from 'naive-ui'
 import type { Ref, VNode } from 'vue'
-import type { RDropdownButtonOption } from '~/src/components/buttons'
 import type { OrderQueryOption, OrderQueryProps, WhereQueryOption } from './query'
+import type { DropdownButtonOption } from '~/src/components/buttons'
 
 export type OprType = 'create' | 'whereQuery' | 'orderQuery' | 'batchDelete' | 'refresh' | 'exportExcel' | 'columnSettings'
 // table header props
@@ -16,8 +16,8 @@ export interface HeaderOperationsProps<T> extends OrderQueryProps<T> {
   loading?: boolean
   checkedRowKeys?: DataTableRowKey[]
   initStorageColumns?: Storage.Column[]
-  columns?: RColumn<T>[]
-  onUpdateColumns?: (cols: RColumn<T>[]) => void
+  columns?: Column<T>[]
+  onUpdateColumns?: (cols: Column<T>[]) => void
 
   displayOrder?: OprType[]
 
@@ -77,7 +77,7 @@ export interface RowPopconfirmActionProps<T> extends RowActionCommonProps<T> {
 }
 export interface RowDropdownActionProps<T> extends RowActionCommonProps<T> {
   type: 'dropdown'
-  dropdownButtonOptions: (row: T) => RDropdownButtonOption[]
+  dropdownButtonOptions: (row: T) => DropdownButtonOption[]
 }
 export type RowActionProps<T> = RowTooltipActionProps<T> | RowPopconfirmActionProps<T> | RowDropdownActionProps<T>
 
@@ -111,14 +111,14 @@ export interface OrderQueryColumnOption {
 }
 
 // columns
-export interface RColumn<T> extends DataTableBaseColumn<T> {
+export interface Column<T> extends DataTableBaseColumn<T> {
   filterOption?: WhereQueryColumnOption
   sortOption?: OrderQueryColumnOption | true
   initHide?: boolean // 初始化的时候是否隐藏该列，即不会添加到localStorage中
 }
 
 // table props
-export interface RTableProps<T> {
+export interface TableProps<T> {
   // 1. table-level props
   // meta
   name: string
@@ -149,7 +149,7 @@ export interface RTableProps<T> {
   rowActions?: RowActionProps<T>[]
 
   // 3. column-level props
-  columns: RColumn<T>[]
+  columns: Column<T>[]
   commonColumnProps?: Omit<DataTableColumn<T>, 'key'>
 
   // 4. fn
@@ -165,7 +165,7 @@ export interface RTableProps<T> {
   }
 }
 
-export type RLocalTableProps<T> = RTableProps<T> & {
+export type LocalTableProps<T> = TableProps<T> & {
   data: Ref<T[]>
   onUpdateData: (data: T[]) => void
   rowKey: DataTableCreateRowKey<T>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { TableProps } from './types'
 import { NCollapseTransition, NDataTable } from 'naive-ui'
 import { useTable } from '~/src/composables'
 import { RTableHeaderOperations, RTableWhereQuery } from '.'
-import type { RTableProps } from './types'
 
-const props = defineProps<RTableProps<any>>()
+const props = defineProps<TableProps<any>>()
 
 const {
   stats,

@@ -1,4 +1,4 @@
-export interface RTabItemProps {
+export interface TabItemProps {
   id: string // i.e. route.fullPath, including search and hash
   label: string
   i18nKey?: string
@@ -6,17 +6,17 @@ export interface RTabItemProps {
   closable?: boolean
 }
 
-export interface RTabListProps {
+export interface TabListProps {
   activeTabId: string
   tabItemHeight: number
-  tabItems: RTabItemProps[]
+  tabItems: TabItemProps[]
 }
 
-export interface RTabSelectorProps {
+export interface TabSelectorProps {
   activeTabId: string
-  tabItems: RTabItemProps[]
+  tabItems: TabItemProps[]
 }
 
-export interface RTabProps extends RTabListProps {
+export interface TabProps extends TabListProps {
   tabHeight: number
 }

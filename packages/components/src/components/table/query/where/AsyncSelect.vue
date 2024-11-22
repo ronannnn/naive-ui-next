@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { NInputGroup } from 'naive-ui'
-import { computed, h, ref, watch } from 'vue'
 import type { SelectInst } from 'naive-ui'
 import type { VNode } from 'vue'
+import { NInputGroup } from 'naive-ui'
+import { computed, h, ref, watch } from 'vue'
 import { RSelect, RTooltipButton } from '~/src'
-import type { RDropdownButtonOption } from '~/src/components/buttons/dropdown-button'
+import type { DropdownButtonOption } from '~/src/components/buttons/dropdown-button'
 
 const props = withDefaults(defineProps<{
   class?: string
@@ -51,7 +51,7 @@ const queryValue = computed<(string | number)[]>({
 })
 const isValuesEmpty = computed(() => queryValue.value?.length === 0)
 
-const dropdownOptions = computed<RDropdownButtonOption[]>(() => [
+const dropdownOptions = computed<DropdownButtonOption[]>(() => [
   {
     label: () => h('span', { style: { color: 'red' } }, '删除该查询条件'),
     key: 'delete',

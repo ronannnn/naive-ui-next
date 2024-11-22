@@ -1,6 +1,3 @@
-import { useLocalStorage } from '@vueuse/core'
-import { defu } from 'defu'
-import { computed, h, ref } from 'vue'
 import type {
   DataTableColumn,
   DataTableProps,
@@ -8,13 +5,16 @@ import type {
   PaginationProps,
 } from 'naive-ui'
 import type { HTMLAttributes, Ref, VNode } from 'vue'
+import { useLocalStorage } from '@vueuse/core'
+import { defu } from 'defu'
+import { computed, h, ref } from 'vue'
 import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/components/buttons'
-import type { HeaderOperationsProps, OrderQueryOption, RColumn, RLocalTableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
+import type { Column, HeaderOperationsProps, LocalTableProps, OrderQueryOption, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
 import { compareObjArrays } from './diff'
 import { exportExcel } from './excel'
 import { isString, useArraySet } from './type'
 
-export function useLocalTable<T>(props: RLocalTableProps<T>) {
+export function useLocalTable<T>(props: LocalTableProps<T>) {
   const {
     data,
     onUpdateData,
@@ -229,7 +229,7 @@ export function useLocalTable<T>(props: RLocalTableProps<T>) {
   }
 
   // columns
-  const columnsWithCommonProps = ref<RColumn<T>[]>(columns.map(col => defu(col, commonColumnProps))) as Ref<RColumn<T>[]>
+  const columnsWithCommonProps = ref<Column<T>[]>(columns.map(col => defu(col, commonColumnProps))) as Ref<Column<T>[]>
   const sortedColumnsWithSelectionExpansionActionsRender = computed<DataTableColumn<T>[]>(() => {
     const result: DataTableColumn<T>[] = []
     // selection列

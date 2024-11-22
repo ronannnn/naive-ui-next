@@ -11,14 +11,14 @@ import {
 } from 'naive-ui'
 import { computed, h, onMounted, ref, watch } from 'vue'
 import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/components/buttons'
-import type { HeaderOperationsProps, OrderQueryOption, RColumn, RTableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
+import type { Column, HeaderOperationsProps, OrderQueryOption, TableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
 import { exportExcel } from '.'
 import { useBoolean, useFetching } from './boolean'
 import { compareObjArrays } from './diff'
 import { isEmptyString } from './string'
 import { isString, useArraySet } from './type'
 
-export function useTable<T extends { id: number }>(props: RTableProps<T>) {
+export function useTable<T extends { id: number }>(props: TableProps<T>) {
   const {
     name,
     rowKey = (row: T) => row.id,
@@ -239,7 +239,7 @@ export function useTable<T extends { id: number }>(props: RTableProps<T>) {
   }
 
   // columns
-  const columnsWithCommonProps = ref<RColumn<T>[]>(columns.map(col => defu(col, commonColumnProps))) as Ref<RColumn<T>[]>
+  const columnsWithCommonProps = ref<Column<T>[]>(columns.map(col => defu(col, commonColumnProps))) as Ref<Column<T>[]>
   const sortedColumnsWithSelectionExpansionActionsRender = computed<DataTableColumn<T>[]>(() => {
     const result: DataTableColumn<T>[] = []
     // selection列

@@ -1,36 +1,21 @@
 import type {
-  ButtonProps,
   PopoverPlacement,
   PopoverTrigger,
   PopselectProps,
   SelectOption,
 } from 'naive-ui'
+import type { CommonButtonProps } from '../types'
 
-export interface RPopselectButtonProps {
+export type PopselectButtonProps = {
   class?: string
-  enableSearch?: boolean
-  // buttons
-  size?: ButtonProps['size']
-  type?: ButtonProps['type']
-  dashed?: ButtonProps['dashed']
-  secondary?: ButtonProps['secondary']
-  tertiary?: ButtonProps['tertiary']
-  quaternary?: ButtonProps['quaternary']
-  round?: ButtonProps['round']
-  circle?: ButtonProps['circle']
-  text?: ButtonProps['text']
-  loading?: ButtonProps['loading']
-  disabled?: ButtonProps['disabled']
-  ghost?: ButtonProps['ghost']
-  color?: ButtonProps['color']
-  iconClass?: string
   // popselect
-  popselectOptions: SelectOption[]
+  options: SelectOption[]
   onUpdateValue: PopselectProps['onUpdateValue']
   renderLabel?: PopselectProps['renderLabel']
   width?: PopselectProps['width']
   popselectPlacement?: PopoverPlacement
   trigger?: PopoverTrigger
   // others
+  enableSearch?: boolean
   searchInputPlaceholder?: string
-}
+} & CommonButtonProps

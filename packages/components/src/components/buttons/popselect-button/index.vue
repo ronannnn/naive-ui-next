@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import type { SelectOption } from 'naive-ui'
-import type { RPopselectButtonProps } from './types'
+import type { PopselectButtonProps } from './types'
 import { NButton, NInput, NPopselect } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { isEmptyString } from '~/src/composables'
 
-const props = withDefaults(defineProps<RPopselectButtonProps>(), {
+const props = withDefaults(defineProps<PopselectButtonProps>(), {
   trigger: 'click',
 })
 const fnLoading = ref(false)
 const btnLoading = computed(() => fnLoading.value || props.loading)
 const searchContent = ref('')
-const filteredOptions = computed<SelectOption[]>(() => props.popselectOptions.filter((option) => {
+const filteredOptions = computed<SelectOption[]>(() => props.options.filter((option) => {
   if (!props.enableSearch || isEmptyString(searchContent.value)) {
     return true
   }

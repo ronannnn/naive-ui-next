@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { RDropdownButtonProps } from './types'
+import type { DropdownButtonProps } from './types'
 import { NButton, NDropdown } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { findDropdownButtonOptionsKeyRecursively } from './utils'
 
-const props = withDefaults(defineProps<RDropdownButtonProps>(), {
+const props = withDefaults(defineProps<DropdownButtonProps>(), {
   trigger: 'click',
 })
 const fnLoading = ref(false)

@@ -1,4 +1,4 @@
-export interface RLabelValueRenderProps {
+export interface LabelValueRenderProps {
   label: string
   value?: any
 }

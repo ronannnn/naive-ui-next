@@ -1,6 +1,6 @@
 import type { SortableEvent } from 'vue-draggable-plus'
 
-export interface RDndProps {
+export interface DndProps {
   dndClass?: string
   handle?: string
   group?: string

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, h } from 'vue'
 import type { SelectRenderLabel } from 'naive-ui'
+import type { TableOrderQueryNewerProps } from './types'
+import { computed, h } from 'vue'
 import { RPopselectButton } from '~/src'
-import type { RTableOrderQueryNewerProps } from './types'
 
-const props = defineProps<RTableOrderQueryNewerProps<any>>()
+const props = defineProps<TableOrderQueryNewerProps<any>>()
 const emit = defineEmits<{
   new: [string]
 }>()
@@ -24,7 +24,7 @@ const renderLabel: SelectRenderLabel = (option) => {
 <template>
   <RPopselectButton
     class="flex-1"
-    :popselect-options="unselectedOptions"
+    :options="unselectedOptions"
     :render-label="renderLabel"
     dashed
     size="small"

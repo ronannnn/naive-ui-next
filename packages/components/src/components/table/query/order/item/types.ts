@@ -1,6 +1,6 @@
 import type { OrderQueryOption } from '../types'
 
-export interface RTableOrderQueryItemProps<T> {
+export interface TableOrderQueryItemProps<T> {
   field: string
   orderType: Query.OrderType
   orderOptions: OrderQueryOption<T>[]

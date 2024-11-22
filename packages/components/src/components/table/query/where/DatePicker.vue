@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import type { DatePickerInst } from 'naive-ui'
+import type { Shortcuts } from 'naive-ui/es/date-picker/src/interface'
 import dayjs, { type OpUnitType } from 'dayjs'
 import { NDatePicker, NInputGroup } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
-import type { DatePickerInst } from 'naive-ui'
-import type { Shortcuts } from 'naive-ui/es/date-picker/src/interface'
-import type { RDropdownButtonOption } from '~/src'
+import type { DropdownButtonOption } from '~/src'
 import { RTooltipButton } from '~/src'
 
 const props = withDefaults(defineProps<{
@@ -92,7 +92,7 @@ function focus() {
 }
 defineExpose({ focus })
 
-const dropdownOptions = computed<RDropdownButtonOption[]>(() => [
+const dropdownOptions = computed<DropdownButtonOption[]>(() => [
   {
     label: () => h('span', { style: { color: 'red' } }, '删除该查询条件'),
     key: 'delete',

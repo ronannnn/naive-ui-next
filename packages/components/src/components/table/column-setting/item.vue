@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { RColumn } from '../types'
+import type { Column } from '../types'
 import type { FixType } from './index.vue'
 
 defineProps<{
-  columns: RColumn<any>[]
+  columns: Column<any>[]
   stgCol: Storage.Column
 }>()
 const emit = defineEmits<{
-  'fix-col': [Storage.Column, FixType]
+  fixCol: [Storage.Column, FixType]
 }>()
 const checked = defineModel<boolean | undefined>('checked', { required: true })
 const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded transition-all'
@@ -22,7 +22,7 @@ const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded tra
     <div ml-auto flex-y-center>
       <n-tooltip v-if="stgCol.fixed !== 'left'" :keep-alive-on-hover="false" content-style="padding: 0;">
         <template #trigger>
-          <div :class="iconClass" @click="() => emit('fix-col', stgCol, 'left')">
+          <div :class="iconClass" @click="() => emit('fixCol', stgCol, 'left')">
             <div class="i-tabler-arrow-bar-to-up text-4" />
           </div>
         </template>
@@ -30,7 +30,7 @@ const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded tra
       </n-tooltip>
       <n-tooltip v-if="stgCol.fixed !== 'right'" :keep-alive-on-hover="false" content-style="padding: 0;">
         <template #trigger>
-          <div :class="iconClass" @click="() => emit('fix-col', stgCol, 'right')">
+          <div :class="iconClass" @click="() => emit('fixCol', stgCol, 'right')">
             <div class="i-tabler-arrow-bar-to-down text-4" />
           </div>
         </template>
@@ -38,7 +38,7 @@ const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded tra
       </n-tooltip>
       <n-tooltip v-if="stgCol.fixed !== 'unfixed'" :keep-alive-on-hover="false" content-style="padding: 0;">
         <template #trigger>
-          <div :class="iconClass" @click="() => emit('fix-col', stgCol, 'unfixed')">
+          <div :class="iconClass" @click="() => emit('fixCol', stgCol, 'unfixed')">
             <RIconCancel class="text-4" />
           </div>
         </template>

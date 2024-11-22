@@ -1,7 +1,7 @@
-import type { RColumn } from '../types'
+import type { Column } from '../types'
 
-export interface RColumnSetting {
+export interface ColumnSetting {
   initStorageColumns: Storage.Column[]
-  columns: RColumn<any>[]
+  columns: Column<any>[]
   tblName: string
 }

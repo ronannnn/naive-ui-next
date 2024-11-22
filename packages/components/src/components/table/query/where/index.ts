@@ -1,4 +1,3 @@
-import type { SFCWithInstall } from '~/src/composables'
 import { withInstall } from '~/src/composables'
 import TableWhereQueryAsyncSelect from './AsyncSelect.vue'
 import TableWhereQueryDatePicker from './DatePicker.vue'
@@ -10,11 +9,11 @@ import TableWhereQuerySelect from './Select.vue'
 
 export * from './types'
 
-export const RTableWhereQueryAsyncSelect: SFCWithInstall<typeof TableWhereQueryAsyncSelect> = withInstall(TableWhereQueryAsyncSelect)
-export const RTableWhereQueryDatePicker: SFCWithInstall<typeof TableWhereQueryDatePicker> = withInstall(TableWhereQueryDatePicker)
-export const RTableWhereQueryDateRangePicker: SFCWithInstall<typeof TableWhereQueryDateRangePicker> = withInstall(TableWhereQueryDateRangePicker)
-export const RTableWhereQuery: SFCWithInstall<typeof TableWhereQuery> = withInstall(TableWhereQuery)
-export const RTableWhereQueryInput: SFCWithInstall<typeof TableWhereQueryInput> = withInstall(TableWhereQueryInput)
-export const RTableWhereQueryItem: SFCWithInstall<typeof TableWhereQueryItem> = withInstall(TableWhereQueryItem)
-export const RTableWhereQuerySelect: SFCWithInstall<typeof TableWhereQuerySelect> = withInstall(TableWhereQuerySelect)
+export const RTableWhereQueryAsyncSelect = withInstall(TableWhereQueryAsyncSelect)
+export const RTableWhereQueryDatePicker = withInstall(TableWhereQueryDatePicker)
+export const RTableWhereQueryDateRangePicker = withInstall(TableWhereQueryDateRangePicker)
+export const RTableWhereQuery = withInstall(TableWhereQuery)
+export const RTableWhereQueryInput = withInstall(TableWhereQueryInput)
+export const RTableWhereQueryItem = withInstall(TableWhereQueryItem)
+export const RTableWhereQuerySelect = withInstall(TableWhereQuerySelect)
 export default RTableWhereQuery

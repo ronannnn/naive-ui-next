@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { RPopconfirmButtonProps } from './types'
+import type { PopconfirmButtonProps } from './types'
 import { NButton, NPopconfirm } from 'naive-ui'
 import { computed, ref } from 'vue'
 
-const props = defineProps<RPopconfirmButtonProps>()
+const props = defineProps<PopconfirmButtonProps>()
 
 const open = ref(false)
 const fnLoading = ref(false)
