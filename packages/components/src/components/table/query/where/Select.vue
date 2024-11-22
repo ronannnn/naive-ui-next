@@ -3,7 +3,7 @@ import type { SelectInst, SelectOption } from 'naive-ui'
 import { NButton, NInputGroup, NSelect } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import { type DropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
-import type { NaiveUiSize } from '~/src/types'
+import type { NaiveUiSize, QueryWhereItem, QueryWhereOpr } from '~/src/types'
 
 const props = withDefaults(defineProps<{
   class?: string

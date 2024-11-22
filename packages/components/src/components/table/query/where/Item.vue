@@ -2,7 +2,7 @@
 import type { WhereQueryOption } from './types'
 import { computed, ref } from 'vue'
 import { cloneJson } from '~/src/composables'
-import type { NaiveUiSize } from '~/src/types'
+import type { NaiveUiSize, QueryWhere, QueryWhereItem, QueryWhereOpr } from '~/src/types'
 import {
   RTableWhereQueryAsyncSelect,
   RTableWhereQueryDatePicker,

@@ -3,7 +3,7 @@ import type { InputInst } from 'naive-ui'
 import { NInput, NInputGroup } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import { type DropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
-import type { NaiveUiSize } from '~/src/types'
+import type { NaiveUiSize, QueryWhereItem, QueryWhereOpr } from '~/src/types'
 
 const props = withDefaults(defineProps<{
   label: string
