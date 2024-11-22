@@ -123,7 +123,7 @@ export interface TableProps<T> {
   // 1. table-level props
   // meta
   name: string
-  primaryKey: string
+  primaryKey?: string
   title?: string
   rowKey?: DataTableCreateRowKey<T>
   extraButtons?: HeaderOperationsProps<T>['extraButtons']
