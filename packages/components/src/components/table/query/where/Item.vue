@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { WhereQueryOption } from './types'
 import { computed, ref } from 'vue'
 import { cloneJson } from '~/src/composables'
+import type { NaiveUiSize } from '~/src/types'
 import {
   RTableWhereQueryAsyncSelect,
   RTableWhereQueryDatePicker,
@@ -8,7 +10,6 @@ import {
   RTableWhereQueryInput,
   RTableWhereQuerySelect,
 } from '.'
-import type { WhereQueryOption } from './types'
 
 const props = withDefaults(defineProps<{
   options: WhereQueryOption<any>[]
@@ -16,18 +17,18 @@ const props = withDefaults(defineProps<{
   triggerQuery: () => void
   onRemove?: (field: string) => void
   loading?: boolean
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
 }>(), {
   size: 'medium',
 })
-const query = defineModel<Query.Where<any>>('query', { required: true })
+const query = defineModel<QueryWhere<any>>('query', { required: true })
 const supData = defineModel<Record<string, any>>('supData', { required: true })
 
 const option = computed(() => props.options.find(option => option.field === props.field))
-const whereQueryItem = computed<Query.WhereItem<any>>({
+const whereQueryItem = computed<QueryWhereItem<any>>({
   get() {
     const foundOption = props.options.find(option => option.field === props.field)
-    let opr: Query.WhereOpr = null
+    let opr: QueryWhereOpr = null
     if (foundOption) {
       opr = foundOption.opr ?? null
     }

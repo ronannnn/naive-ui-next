@@ -3,17 +3,18 @@ import type { InputInst } from 'naive-ui'
 import { NInput, NInputGroup } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import { type DropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
+import type { NaiveUiSize } from '~/src/types'
 
 const props = withDefaults(defineProps<{
   label: string
-  opr?: Query.WhereOpr
+  opr?: QueryWhereOpr
   onRemove?: () => void
   disabled?: boolean
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
 }>(), {
   size: 'medium',
 })
-const whereQueryItem = defineModel<Query.WhereItem<any>>('whereQueryItem', { required: true })
+const whereQueryItem = defineModel<QueryWhereItem<any>>('whereQueryItem', { required: true })
 watch(
   () => whereQueryItem.value,
   () => {

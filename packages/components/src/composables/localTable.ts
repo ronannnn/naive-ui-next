@@ -10,6 +10,7 @@ import { defu } from 'defu'
 import { computed, h, ref } from 'vue'
 import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/components/buttons'
 import type { Column, HeaderOperationsProps, LocalTableProps, OrderQueryOption, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
+import type { QueryOrder, QueryWhere, StorageColumn, StorageTableSetting } from '~/src/types'
 import { compareObjArrays } from './diff'
 import { exportExcel } from './excel'
 import { isString, useArraySet } from './type'
@@ -60,8 +61,8 @@ export function useLocalTable<T>(props: LocalTableProps<T>) {
     return options
   })
   const initWhereQueryOptionKeys = computed(() => whereQueryOptions.value.filter(option => !option.initHide).map(option => option.field as string))
-  const whereQueryInitValues = computed<Query.Where<T>>(() => {
-    const initValues: Query.Where<T> = whereQueryOptions.value
+  const whereQueryInitValues = computed<QueryWhere<T>>(() => {
+    const initValues: QueryWhere<T> = whereQueryOptions.value
       .filter(option => option.initValues)
       .map(option => ({ field: option.field, opr: option.opr ?? null, value: option.initValues ?? null }))
     extraWhereQueryInitValues?.forEach((initValue) => {
@@ -84,14 +85,14 @@ export function useLocalTable<T>(props: LocalTableProps<T>) {
     })
     return options
   })
-  const orderQueryInitValues = computed<Query.Order<T>>(() => {
+  const orderQueryInitValues = computed<QueryOrder<T>>(() => {
     const initValues = orderQueryOptions.value
       .filter(option => option.initOrderType)
       .map(option => ({ field: option.field, order: option.initOrderType ?? 'desc' }))
     return initValues
   })
-  const initStorageColumns = computed<Storage.Column[]>(() => columns.map(col => ({ key: col.key as string, fixed: 'unfixed', checked: !col.initHide })))
-  const localStgSettings = useLocalStorage<Storage.TableSetting<T>>(`${name}-tbl-settings`, {
+  const initStorageColumns = computed<StorageColumn[]>(() => columns.map(col => ({ key: col.key as string, fixed: 'unfixed', checked: !col.initHide })))
+  const localStgSettings = useLocalStorage<StorageTableSetting<T>>(`${name}-tbl-settings`, {
     columns: initStorageColumns.value,
     pageSize: 10,
     whereQuery: whereQueryInitValues.value,
@@ -151,7 +152,7 @@ export function useLocalTable<T>(props: LocalTableProps<T>) {
     },
     set: newData => localStgSettings.value = { ...localStgSettings.value, whereQuerySupData: newData },
   })
-  const whereQuery = computed<Query.Where<T>>({
+  const whereQuery = computed<QueryWhere<T>>({
     get: () => {
       if (!localStgSettings.value.whereQuery) {
         localStgSettings.value.whereQuery = []
@@ -176,7 +177,7 @@ export function useLocalTable<T>(props: LocalTableProps<T>) {
   }
 
   // order query
-  const orderQuery = computed<Query.Order<T>>({
+  const orderQuery = computed<QueryOrder<T>>({
     get: () => localStgSettings.value.orderQuery ?? [],
     set: query => localStgSettings.value = { ...localStgSettings.value, orderQuery: query },
   })

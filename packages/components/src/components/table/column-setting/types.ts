@@ -1,7 +1,8 @@
 import type { Column } from '../types'
+import type { StorageColumn } from '~/src/types'
 
 export interface ColumnSetting {
-  initStorageColumns: Storage.Column[]
+  initStorageColumns: StorageColumn[]
   columns: Column<any>[]
   tblName: string
 }

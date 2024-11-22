@@ -12,6 +12,7 @@ import {
 import { computed, h, onMounted, ref, watch } from 'vue'
 import { RDropdownButton, RPopconfirmButton, RTooltipButton } from '~/src/components/buttons'
 import type { Column, HeaderOperationsProps, OrderQueryOption, TableProps, WhereQueryOption, WhereQueryProps } from '~/src/components/table'
+import type { QueryOrder, QueryWhere, StatsItem, StorageColumn, StorageTableSetting } from '~/src/types'
 import { exportExcel } from '.'
 import { useBoolean, useFetching } from './boolean'
 import { compareObjArrays } from './diff'
@@ -49,7 +50,7 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
   } = props
   // data
   const data = ref<T[]>([]) as Ref<T[]>
-  const stats = ref<Api.StatsItem[][]>([]) as Ref<Api.StatsItem[][]>
+  const stats = ref<StatsItem[][]>([]) as Ref<StatsItem[][]>
 
   // local storage
   const whereQueryOptions = computed<WhereQueryOption<T>[]>(() => {
@@ -68,7 +69,7 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
     return options
   })
   const initWhereQueryOptionKeys = computed(() => whereQueryOptions.value.filter(option => !option.initHide).map(option => option.field as string))
-  const whereQueryInitValues = computed<Query.Where<T>>(() => {
+  const whereQueryInitValues = computed<QueryWhere<T>>(() => {
     const initValues = whereQueryOptions.value
       .filter(option => option.initValues)
       .map(option => ({ field: option.field, opr: option.opr ?? null, value: option.initValues ?? null }))
@@ -92,14 +93,14 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
     })
     return options
   })
-  const orderQueryInitValues = computed<Query.Order<T>>(() => {
+  const orderQueryInitValues = computed<QueryOrder<T>>(() => {
     const initValues = orderQueryOptions.value
       .filter(option => option.initOrderType)
       .map(option => ({ field: option.field, order: option.initOrderType ?? 'desc' }))
     return initValues
   })
-  const initStorageColumns = computed<Storage.Column[]>(() => columns.map(col => ({ key: col.key as string, fixed: 'unfixed', checked: !col.initHide })))
-  const localStgSettings = useLocalStorage<Storage.TableSetting<T>>(`${name}-tbl-settings`, {
+  const initStorageColumns = computed<StorageColumn[]>(() => columns.map(col => ({ key: col.key as string, fixed: 'unfixed', checked: !col.initHide })))
+  const localStgSettings = useLocalStorage<StorageTableSetting<T>>(`${name}-tbl-settings`, {
     columns: initStorageColumns.value,
     pageSize: 10,
     whereQuery: whereQueryInitValues.value,
@@ -161,7 +162,7 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
     },
     set: newData => localStgSettings.value = { ...localStgSettings.value, whereQuerySupData: newData },
   })
-  const whereQuery = computed<Query.Where<T>>({
+  const whereQuery = computed<QueryWhere<T>>({
     get: () => {
       if (!localStgSettings.value.whereQuery) {
         localStgSettings.value.whereQuery = []
@@ -186,7 +187,7 @@ export function useTable<T extends { id: number }>(props: TableProps<T>) {
   }
 
   // order query
-  const orderQuery = computed<Query.Order<T>>({
+  const orderQuery = computed<QueryOrder<T>>({
     get: () => localStgSettings.value.orderQuery ?? [],
     set: query => localStgSettings.value = { ...localStgSettings.value, orderQuery: query },
   })

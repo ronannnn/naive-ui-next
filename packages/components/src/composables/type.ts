@@ -1,5 +1,6 @@
-import { computed, ref } from 'vue'
 import type { Ref } from 'vue'
+import type { DataTypeString, DataTypeStringKey } from '../types'
+import { computed, ref } from 'vue'
 
 export function useType() {
   const removeDuplicates = <T>(arr: (keyof T)[]): (keyof T)[] => {
@@ -33,7 +34,7 @@ export function useArraySet<T>() {
 
 export const onlyAllowNumberAndDot = (value: string) => !value || /^\d+(?:\.\d+)?\.?$/.test(value)
 
-export const dataTypeLabels: { [K in TypeUtil.DataTypeStringKey]: TypeUtil.DataTypeString<K> } = {
+export const dataTypeLabels: { [K in DataTypeStringKey]: DataTypeString<K> } = {
   string: '[object String]',
   number: '[object Number]',
   boolean: '[object Boolean]',
@@ -51,8 +52,8 @@ export const dataTypeLabels: { [K in TypeUtil.DataTypeStringKey]: TypeUtil.DataT
   file: '[object File]',
 }
 
-function getDataTypeString<K extends TypeUtil.DataTypeStringKey>(value: unknown) {
-  return Object.prototype.toString.call(value) as TypeUtil.DataTypeString<K>
+function getDataTypeString<K extends DataTypeStringKey>(value: unknown) {
+  return Object.prototype.toString.call(value) as DataTypeString<K>
 }
 
 export function isNumber<T extends number>(value: T | unknown): value is T {

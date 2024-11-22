@@ -5,22 +5,23 @@ import { NInputGroup } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import { RSelect, RTooltipButton } from '~/src'
 import type { DropdownButtonOption } from '~/src/components/buttons/dropdown-button'
+import type { NaiveUiSize, PageResult, QueryOrder, QueryTemplate, QueryWhereItem, QueryWhereOpr, RequestResult } from '~/src/types'
 
 const props = withDefaults(defineProps<{
   class?: string
   label: string
-  opr?: Query.WhereOpr
+  opr?: QueryWhereOpr
   onRemove?: () => void
   atLeastOneSelected?: boolean
   disabled?: boolean
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
   // RSelect props
-  searchFn?: (query: Query.Template<any>) => Promise<Api.RequestResult<Api.PageResult<any>>>
+  searchFn?: (query: QueryTemplate<any>) => Promise<RequestResult<PageResult<any>>>
   searchFields: string[]
   labelField: string
   valueField: string
   renderOptionFromData?: (model: any) => VNode
-  orderQuery?: Query.Order<any>
+  orderQuery?: QueryOrder<any>
 }>(), {
   atLeastOneSelected: false,
   showFooter: false,
@@ -28,7 +29,7 @@ const props = withDefaults(defineProps<{
 })
 
 const whereQueryItemSupData = defineModel<any>('whereQueryItemSupData', { required: true })
-const whereQueryItem = defineModel<Query.WhereItem<any>>('whereQueryItem', { required: true })
+const whereQueryItem = defineModel<QueryWhereItem<any>>('whereQueryItem', { required: true })
 watch(
   () => whereQueryItem.value,
   () => {

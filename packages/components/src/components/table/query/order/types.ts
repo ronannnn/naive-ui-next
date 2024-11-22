@@ -1,4 +1,5 @@
 import type { OrderQueryColumnOption } from '~/src/components/table'
+import type { NaiveUiSize, QueryOrder } from '~/src/types'
 
 export interface OrderQueryOption<T> extends OrderQueryColumnOption {
   field: keyof T
@@ -6,11 +7,11 @@ export interface OrderQueryOption<T> extends OrderQueryColumnOption {
 }
 
 export interface OrderQueryProps<T> {
-  defaultOrderQuery?: Query.Order<T>
+  defaultOrderQuery?: QueryOrder<T>
   orderOptions: OrderQueryOption<T>[]
-  orderQuery: Query.Order<T>
-  onUpdateOrderQuery: (query: Query.Order<T>) => void
+  orderQuery: QueryOrder<T>
+  onUpdateOrderQuery: (query: QueryOrder<T>) => void
   loading?: boolean
   triggerQuery: () => Promise<void>
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
 }

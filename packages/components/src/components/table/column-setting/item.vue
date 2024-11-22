@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { Column } from '../types'
 import type { FixType } from './index.vue'
+import type { StorageColumn } from '~/src/types'
 
 defineProps<{
   columns: Column<any>[]
-  stgCol: Storage.Column
+  stgCol: StorageColumn
 }>()
 const emit = defineEmits<{
-  fixCol: [Storage.Column, FixType]
+  fixCol: [StorageColumn, FixType]
 }>()
 const checked = defineModel<boolean | undefined>('checked', { required: true })
 const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded transition-all'

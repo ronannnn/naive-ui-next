@@ -6,21 +6,22 @@ import { NDatePicker, NInputGroup } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import type { DropdownButtonOption } from '~/src'
 import { RTooltipButton } from '~/src'
+import type { NaiveUiSize, QueryWhereItem, QueryWhereOpr } from '~/src/types'
 
 const props = withDefaults(defineProps<{
   label: string
-  opr?: Query.WhereOpr
+  opr?: QueryWhereOpr
   onRemove?: () => void
   ofUnit?: OpUnitType
   shortcuts?: Shortcuts
   disabled?: boolean
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
   format?: string
 }>(), {
   ofUnit: 'day',
   size: 'medium',
 })
-const whereQueryItem = defineModel<Query.WhereItem<any>>('whereQueryItem', { required: true })
+const whereQueryItem = defineModel<QueryWhereItem<any>>('whereQueryItem', { required: true })
 watch(
   () => whereQueryItem.value,
   () => {

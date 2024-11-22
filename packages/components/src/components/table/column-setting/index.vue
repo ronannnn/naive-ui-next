@@ -5,6 +5,7 @@ import { useLocalStorage } from '@vueuse/core'
 import { NButton, NPopover } from 'naive-ui'
 import { onMounted, ref, watch } from 'vue'
 import { RDnd, RTooltipButton } from '~/src'
+import type { StorageColumn, StorageTableSetting } from '~/src/types'
 import { RTableColumnSettingItem } from '.'
 
 export type FixType = 'left' | 'right' | 'unfixed'
@@ -16,8 +17,8 @@ const emit = defineEmits<{
 
 // 在修改列是否显示的时候，props.columns会消失，导致找不到列名，因此在这里复制一份
 const clonedColumns = ref(props.columns)
-const localTblSettings = useLocalStorage<Storage.TableSetting<any>>(`${props.tblName}-tbl-settings`, {})
-function onUpdateColumns(stgCols: Storage.Column[]) {
+const localTblSettings = useLocalStorage<StorageTableSetting<any>>(`${props.tblName}-tbl-settings`, {})
+function onUpdateColumns(stgCols: StorageColumn[]) {
   // update parent columns
   // 先根据stgCols的key进行排序
   const newColumns = [...clonedColumns.value]
@@ -36,14 +37,14 @@ function onUpdateColumns(stgCols: Storage.Column[]) {
     })
     .filter(col => col.checked))
 }
-function onUpdateColumnsAndStgColumns(stgCols: Storage.Column[]) {
+function onUpdateColumnsAndStgColumns(stgCols: StorageColumn[]) {
   localTblSettings.value = {
     ...localTblSettings.value,
     columns: stgCols,
   }
   onUpdateColumns(stgCols)
 }
-function initFixTypeList(fixType: FixType): Storage.Column[] {
+function initFixTypeList(fixType: FixType): StorageColumn[] {
   // init from parent columns and local columns
   const localColumns = localTblSettings.value.columns ?? []
   if (localColumns.length === 0) {
@@ -53,7 +54,7 @@ function initFixTypeList(fixType: FixType): Storage.Column[] {
       : []
   }
 
-  const list: Storage.Column[] = []
+  const list: StorageColumn[] = []
   localColumns.forEach((localCol) => {
     if (localCol.fixed !== fixType) {
       return
@@ -67,20 +68,20 @@ function initFixTypeList(fixType: FixType): Storage.Column[] {
   if (fixType === 'unfixed') {
     // 列可能会新增，把新增的列筛选出来合并到unfixed list中
     const remainingCols = clonedColumns.value.filter(col => !localColumns.some(obj => obj.key === col.key))
-    list.push(...remainingCols.map(col => ({ key: col.key as string, fixed: 'unfixed' } as Storage.Column)))
+    list.push(...remainingCols.map(col => ({ key: col.key as string, fixed: 'unfixed' } as StorageColumn)))
   }
   return list
 }
 
-const leftFixedList = ref<Storage.Column[]>(initFixTypeList('left'))
+const leftFixedList = ref<StorageColumn[]>(initFixTypeList('left'))
 function unifyLeftFixedList() {
   leftFixedList.value = leftFixedList.value.map(col => ({ ...col, fixed: 'left' }))
 }
-const rightFixedList = ref<Storage.Column[]>(initFixTypeList('right'))
+const rightFixedList = ref<StorageColumn[]>(initFixTypeList('right'))
 function unifyRightFixedList() {
   rightFixedList.value = rightFixedList.value.map(col => ({ ...col, fixed: 'right' }))
 }
-const unfixedList = ref<Storage.Column[]>(initFixTypeList('unfixed'))
+const unfixedList = ref<StorageColumn[]>(initFixTypeList('unfixed'))
 function unifyUnfixedList() {
   unfixedList.value = unfixedList.value.map(col => ({ ...col, fixed: 'unfixed' }))
 }
@@ -89,7 +90,7 @@ onMounted(() => {
   onUpdateColumns([...leftFixedList.value, ...unfixedList.value, ...rightFixedList.value])
 })
 
-function fixCol(stgCol: Storage.Column, toType: FixType) {
+function fixCol(stgCol: StorageColumn, toType: FixType) {
   if (stgCol.fixed === toType)
     return
   // 从from list中删除
@@ -121,7 +122,7 @@ function fixCol(stgCol: Storage.Column, toType: FixType) {
 watch(
   () => [leftFixedList.value, rightFixedList.value, unfixedList.value],
   () => {
-    const stgCols: Storage.Column[] = [...leftFixedList.value, ...unfixedList.value, ...rightFixedList.value]
+    const stgCols: StorageColumn[] = [...leftFixedList.value, ...unfixedList.value, ...rightFixedList.value]
     onUpdateColumnsAndStgColumns(stgCols)
   },
   { deep: true },

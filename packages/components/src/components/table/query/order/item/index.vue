@@ -3,10 +3,11 @@ import type { TableOrderQueryItemProps } from './types'
 import { NButton, NSelect } from 'naive-ui'
 import { computed } from 'vue'
 import { RTooltipButton } from '~/src'
+import type { QueryOrderType } from '~/src/types'
 
 const props = defineProps<TableOrderQueryItemProps<any>>()
 const emit = defineEmits<{
-  change: [string, Query.OrderType]
+  change: [string, QueryOrderType]
   remove: []
 }>()
 

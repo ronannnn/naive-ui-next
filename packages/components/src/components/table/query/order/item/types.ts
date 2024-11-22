@@ -1,9 +1,10 @@
 import type { OrderQueryOption } from '../types'
+import type { NaiveUiSize, QueryOrderType } from '~/src/types'
 
 export interface TableOrderQueryItemProps<T> {
   field: string
-  orderType: Query.OrderType
+  orderType: QueryOrderType
   orderOptions: OrderQueryOption<T>[]
   unselectedFields: string[]
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
 }

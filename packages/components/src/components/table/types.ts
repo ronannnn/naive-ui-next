@@ -8,6 +8,7 @@ import type {
 import type { Ref, VNode } from 'vue'
 import type { OrderQueryOption, OrderQueryProps, WhereQueryOption } from './query'
 import type { DropdownButtonOption } from '~/src/components/buttons'
+import type { BatchDeleteCommand, PageResult, QueryOrder, QueryOrderType, QueryTemplate, QueryWhere, QueryWhereOpr, RequestResult, StorageColumn } from '~/src/types'
 
 export type OprType = 'create' | 'whereQuery' | 'orderQuery' | 'batchDelete' | 'refresh' | 'exportExcel' | 'columnSettings'
 // table header props
@@ -15,7 +16,7 @@ export interface HeaderOperationsProps<T> extends OrderQueryProps<T> {
   name: string
   loading?: boolean
   checkedRowKeys?: DataTableRowKey[]
-  initStorageColumns?: Storage.Column[]
+  initStorageColumns?: StorageColumn[]
   columns?: Column<T>[]
   onUpdateColumns?: (cols: Column<T>[]) => void
 
@@ -84,7 +85,7 @@ export type RowActionProps<T> = RowTooltipActionProps<T> | RowPopconfirmActionPr
 // columns
 // where query
 export type WhereQueryColumnOption = {
-  opr?: Query.WhereOpr
+  opr?: QueryWhereOpr
   initValues?: any
   icon?: () => VNode
   initHide?: boolean // 初始化where query form的时候是否隐藏该字段，即不会添加到localStorage中
@@ -93,12 +94,12 @@ export type WhereQueryColumnOption = {
   | { type: 'select', multiple?: boolean, options: SelectOption[] }
   | {
     type: 'asyncSelect'
-    searchFn: (query: Query.Template<any>) => Promise<Api.RequestResult<Api.PageResult<any>>>
+    searchFn: (query: QueryTemplate<any>) => Promise<RequestResult<PageResult<any>>>
     searchFields: string[]
     labelField: string
     valueField: string
     renderOptionFromData?: (model: any) => VNode
-    orderQuery?: Query.Order<any>
+    orderQuery?: QueryOrder<any>
   }
   | { type: 'dateRange', format?: string }
   | { type: 'date', format?: string }
@@ -107,7 +108,7 @@ export type WhereQueryColumnOption = {
 
 // order query
 export interface OrderQueryColumnOption {
-  initOrderType: Query.OrderType
+  initOrderType: QueryOrderType
 }
 
 // columns
@@ -134,7 +135,7 @@ export interface TableProps<T> {
   // where query
   showAllWhereOptionsWhenInit?: boolean
   extraWhereQueryOptions?: WhereQueryOption<T>[]
-  extraWhereQueryInitValues?: Query.Where<T>
+  extraWhereQueryInitValues?: QueryWhere<T>
   // order query
   extraOrderQueryOptions?: OrderQueryOption<T>[] // order query不需要initValues，因为OrderOption中自带了initOrderType
   // 2. row-level props
@@ -154,9 +155,9 @@ export interface TableProps<T> {
 
   // 4. fn
   onCreate?: () => void
-  onFetch?: (query: Query.Template<T>) => Promise<Api.RequestResult<Api.PageResult<T>>>
+  onFetch?: (query: QueryTemplate<T>) => Promise<RequestResult<PageResult<T>>>
   // deletion
-  onBatchDelete?: (cmd: Api.BatchDeleteCommand) => Promise<Api.RequestResult>
+  onBatchDelete?: (cmd: BatchDeleteCommand) => Promise<RequestResult>
 
   // excel
   excel?: {

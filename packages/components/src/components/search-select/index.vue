@@ -5,6 +5,7 @@ import { useDebounceFn } from '@vueuse/core'
 import { NSelect } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { isEmptyString, useSearching } from '~/src/composables'
+import type { QueryWhere } from '~/src/types'
 
 const props = withDefaults(defineProps<SearchSelectProps>(), {
   valueField: 'id',
@@ -61,7 +62,7 @@ async function handleSearch(searchStr: string) {
   }
   startSearching()
   try {
-    const orQuery: Query.Where<any> = []
+    const orQuery: QueryWhere<any> = []
     if (!isEmptyString(searchStr)) {
       props.searchFields.forEach((field) => {
         orQuery.push({ field, opr: 'like', value: searchStr })

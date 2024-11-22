@@ -1,4 +1,5 @@
 import type { WhereQueryColumnOption } from '~/src/components/table'
+import type { NaiveUiSize, QueryWhere } from '~/src/types'
 
 export type WhereQueryOption<T> = {
   field: keyof T | string
@@ -15,11 +16,11 @@ export interface WhereQueryProps<T> {
   whereQueryOptionKeys?: string[]
   onUpdateWhereQueryOptionKeys: (keys: string[]) => void
 
-  defaultWhereQuery?: Query.Where<T>
-  whereQuery: Query.Where<T>
-  onUpdateWhereQuery: (query: Query.Where<T>) => void
+  defaultWhereQuery?: QueryWhere<T>
+  whereQuery: QueryWhere<T>
+  onUpdateWhereQuery: (query: QueryWhere<T>) => void
 
   loading?: boolean
   triggerQuery: () => Promise<void>
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
 }

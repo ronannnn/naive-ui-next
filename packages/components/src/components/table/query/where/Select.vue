@@ -3,24 +3,25 @@ import type { SelectInst, SelectOption } from 'naive-ui'
 import { NButton, NInputGroup, NSelect } from 'naive-ui'
 import { computed, h, ref, watch } from 'vue'
 import { type DropdownButtonOption, RTooltipButton } from '~/src/components/buttons'
+import type { NaiveUiSize } from '~/src/types'
 
 const props = withDefaults(defineProps<{
   class?: string
   label: string
   options: SelectOption[]
-  opr?: Query.WhereOpr
+  opr?: QueryWhereOpr
   onRemove?: () => void
   atLeastOneSelected?: boolean
   disabled?: boolean
   showFooter?: boolean
-  size?: NaiveUiTypes.Size
+  size?: NaiveUiSize
 }>(), {
   atLeastOneSelected: false,
   showFooter: false,
   size: 'medium',
 })
 
-const whereQueryItem = defineModel<Query.WhereItem<any>>('whereQueryItem', { required: true })
+const whereQueryItem = defineModel<QueryWhereItem<any>>('whereQueryItem', { required: true })
 watch(
   () => whereQueryItem.value,
   () => {

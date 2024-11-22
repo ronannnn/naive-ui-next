@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import type { PopoverInst } from 'naive-ui'
+import type { OrderQueryProps } from './types'
 import { NButton, NPopover } from 'naive-ui'
 import { computed, ref } from 'vue'
-import type { PopoverInst } from 'naive-ui'
 import { RDnd } from '~/src'
+import type { QueryOrder, QueryOrderType } from '~/src/types'
 import { RTableOrderQueryItem, RTableOrderQueryNewer } from '.'
-import type { OrderQueryProps } from './types'
 
 const props = defineProps<OrderQueryProps<any>>()
 
@@ -23,7 +24,7 @@ const unselectedOrderFields = computed(() => {
 function onNewField(field: string) {
   props.onUpdateOrderQuery([...props.orderQuery, { field, order: 'desc' }])
 }
-function onChangeField(oldField: string, newField: string, orderType: Query.OrderType) {
+function onChangeField(oldField: string, newField: string, orderType: QueryOrderType) {
   const oldIdx = props.orderQuery.findIndex(query => query.field === oldField)
   if (oldIdx !== -1) {
     props.onUpdateOrderQuery(
@@ -39,7 +40,7 @@ function onRemoveField(field: string) {
 }
 
 // drag related
-const dragOrderQuery = computed<Query.Order<any>>({
+const dragOrderQuery = computed<QueryOrder<any>>({
   get() {
     return props.orderQuery
   },

@@ -10,6 +10,7 @@
     "build:nn": "gulp -f packages/components/scripts/build/index.ts",
     "publish:nn": "gulp -f packages/components/scripts/publish/index.ts",
     "preview": "vite preview",
+    "lint": "eslint",
     "lint:fix": "eslint --fix",
     "postinstall": "npx simple-git-hooks",
     "typecheck": "vue-tsc --noEmit",
