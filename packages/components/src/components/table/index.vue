@@ -10,6 +10,7 @@ const props = defineProps<TableProps<any>>()
 const {
   stats,
   // query
+  whereQuery,
   whereQueryOpen,
   whereQueryPinned,
   toggleWhereQueryPinned,
@@ -25,7 +26,7 @@ const {
 } = useTable(props)
 
 // expose
-defineExpose({ createRow, updateRow, deleteRow, createOrInsertNewRowAfterExistedRow, stats })
+defineExpose({ createRow, updateRow, deleteRow, createOrInsertNewRowAfterExistedRow, stats, whereQuery })
 </script>
 
 <template>
