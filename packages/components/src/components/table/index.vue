@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { TableProps } from './types'
 import { NCollapseTransition, NDataTable } from 'naive-ui'
+import { RHoverContainer } from '~/src'
 import { useTable } from '~/src/composables'
 import { RTableHeaderOperations, RTableWhereQuery } from '.'
 
@@ -50,12 +51,12 @@ defineExpose({ createRow, updateRow, deleteRow, createOrInsertNewRowAfterExisted
               toggleWhereQueryPinned()
             }"
           >
-            <HoverContainer v-if="whereQueryPinned" tooltip-content="取消固定查询面板" placement="top">
-              <RIconPinned />
-            </HoverContainer>
-            <HoverContainer v-else tooltip-content="固定查询面板" placement="top">
-              <RIconPin />
-            </HoverContainer>
+            <RHoverContainer v-if="whereQueryPinned" tooltip-content="取消固定查询面板" placement="top">
+              <div class="i-tabler-pinned" />
+            </RHoverContainer>
+            <RHoverContainer v-else tooltip-content="固定查询面板" placement="top">
+              <div class="i-tabler-pin" />
+            </RHoverContainer>
           </div>
         </template>
       </RTableWhereQuery>

@@ -17,7 +17,7 @@ const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded tra
 <template>
   <div v-if="stgCol.key" class="h-8 flex-y-center rounded px-2">
     <div class="col-settings-handle mr-2 flex-center cursor-move">
-      <RIconDrag class="text-4 text-gray" />
+      <div class="i-tabler-drag-drop text-4 text-gray" />
     </div>
     <span mr-6>{{ columns.find(col => col.key === stgCol.key)?.title ?? '未知列名' }}</span>
     <div ml-auto flex-y-center>
@@ -40,7 +40,7 @@ const iconClass = 'cursor-pointer flex-center p-1 hover:bg-slate-200 rounded tra
       <n-tooltip v-if="stgCol.fixed !== 'unfixed'" :keep-alive-on-hover="false" content-style="padding: 0;">
         <template #trigger>
           <div :class="iconClass" @click="() => emit('fixCol', stgCol, 'unfixed')">
-            <RIconCancel class="text-4" />
+            <div class="i-tabler-x text-4" />
           </div>
         </template>
         取消固定
