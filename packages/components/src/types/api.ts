@@ -12,16 +12,10 @@ export interface SuccessResult<T = any> {
   /** 请求数据 */
   data: T
 }
-export interface RequestError {
-  /** 错误码 */
-  code: string | number
-  /** 错误信息 */
-  msg: string
-}
 /** 自定义的请求失败结果 */
 export interface FailedResult {
   /** 请求错误 */
-  error: RequestError
+  error: Error
   /** 请求数据 */
   data: null
 }
