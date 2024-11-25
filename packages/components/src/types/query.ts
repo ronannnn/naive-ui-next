@@ -21,7 +21,14 @@ export interface QuerySelectQueryItem<T> {
 }
 
 export type QueryWhere<T> = QueryWhereItem<T>[]
-export type QueryWhereOpr = 'custom' | 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'like' | 'start_like' | 'end_like' | 'in' | 'not_in' | 'range' | 'is' | 'is_not' | null
+export type QueryWhereOpr = 'custom' |
+  'eq' | 'ne' |
+  'gt' | 'gte' | 'lt' | 'lte' |
+  'like' | 'start_like' | 'end_like' |
+  'in' | 'not_in' | 'range' |
+  'is' | 'is_not' |
+  'str_len_gt' |
+  null
 export interface QueryWhereItem<T> {
   field: keyof T | string
   opr: QueryWhereOpr
