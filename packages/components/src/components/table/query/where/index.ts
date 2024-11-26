@@ -1,4 +1,5 @@
 import { withInstall } from '~/src/composables'
+import TableWhereQueryAsyncAutoComplete from './AsyncAutoComplete.vue'
 import TableWhereQueryAsyncSelect from './AsyncSelect.vue'
 import TableWhereQueryDatePicker from './DatePicker.vue'
 import TableWhereQueryDateRangePicker from './DateRangePicker.vue'
@@ -9,6 +10,7 @@ import TableWhereQuerySelect from './Select.vue'
 
 export * from './types'
 
+export const RTableWhereQueryAsyncAutoComplete = withInstall(TableWhereQueryAsyncAutoComplete)
 export const RTableWhereQueryAsyncSelect = withInstall(TableWhereQueryAsyncSelect)
 export const RTableWhereQueryDatePicker = withInstall(TableWhereQueryDatePicker)
 export const RTableWhereQueryDateRangePicker = withInstall(TableWhereQueryDateRangePicker)

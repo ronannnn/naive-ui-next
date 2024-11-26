@@ -103,6 +103,17 @@ export type WhereQueryColumnOption = {
   }
   | { type: 'dateRange', format?: string }
   | { type: 'date', format?: string }
+  | {
+    type: 'asyncAutoComplete'
+    searchFields: string[]
+    labelField: string
+    valueField?: string
+    searchFn: (query: QueryTemplate<any>) => Promise<RequestResult<PageResult<any>>>
+    extraWhereQueryInitValue?: QueryWhere<any>
+    distinct?: boolean
+    empty?: string
+    orOrAnd?: 'or' | 'and'
+  }
   | { type: 'unknown' }
 )
 

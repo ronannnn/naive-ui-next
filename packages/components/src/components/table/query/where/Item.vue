@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import { cloneJson } from '~/src/composables'
 import type { NaiveUiSize, QueryWhere, QueryWhereItem, QueryWhereOpr } from '~/src/types'
 import {
+  RTableWhereQueryAsyncAutoComplete,
   RTableWhereQueryAsyncSelect,
   RTableWhereQueryDatePicker,
   RTableWhereQueryDateRangePicker,
@@ -134,6 +135,24 @@ defineExpose({ focus })
     :disabled="loading"
     :size="size"
     :format="option.format"
+    @remove="handleRemove"
+  />
+  <RTableWhereQueryAsyncAutoComplete
+    v-else-if="option.type === 'asyncAutoComplete'"
+    ref="itemRef"
+    v-model:where-query-item="whereQueryItem"
+    :label="option.label"
+    :opr="option.opr"
+    :disabled="loading"
+    :size="size"
+    :search-fields="option.searchFields ?? []"
+    :label-field="option.labelField ?? ''"
+    :value-field="option.valueField"
+    :search-fn="option.searchFn"
+    :extra-where-query-init-value="option.extraWhereQueryInitValue"
+    :distinct="option.distinct"
+    :empty="option.empty"
+    :or-or-and="option.orOrAnd"
     @remove="handleRemove"
   />
 </template>
